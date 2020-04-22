@@ -1,4 +1,4 @@
-package pl.js.juniorasks.models;
+package pl.js.juniorasks.models.dtos;
 
 import java.util.Objects;
 

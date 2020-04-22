@@ -1,4 +1,4 @@
-package pl.js.juniorasks.models;
+package pl.js.juniorasks.models.dtos;
 
 import java.util.HashSet;
 import java.util.Set;
@@ -6,6 +6,7 @@ import java.util.Set;
 public class Mentor {
 
     private final String nick;
+
     private final Set<Mentee> assignedMentees = new HashSet<>();
 
     public Mentor(String nick) {
@@ -26,5 +27,9 @@ public class Mentor {
 
     public int getNumberOfMentees() {
         return this.assignedMentees.size();
+    }
+
+    public String getNick() {
+        return nick;
     }
 }

@@ -1,6 +1,8 @@
 package pl.js.juniorasks.assignment;
 
-import pl.js.juniorasks.models.Mentor;
+import pl.js.juniorasks.models.dtos.Mentor;
+
+import static pl.js.juniorasks.tools.InputValidator.validateStringValue;
 
 public class AssignmentService {
 
@@ -11,22 +13,16 @@ public class AssignmentService {
     }
 
     public Mentor assignMentee(String mentorNick, String menteeNick) {
-        validateInputData(mentorNick);
-        validateInputData(menteeNick);
+        validateStringValue(mentorNick);
+        validateStringValue(menteeNick);
 
         return assignmentProcessor.assignMenteeToMentor(mentorNick, menteeNick);
     }
 
     public Mentor removeMentee(String mentorNick, String menteeNick) {
-        validateInputData(mentorNick);
-        validateInputData(menteeNick);
+        validateStringValue(mentorNick);
+        validateStringValue(menteeNick);
 
         return assignmentProcessor.removeMenteeFromMentor(mentorNick, menteeNick);
-    }
-
-    private void validateInputData(String value) {
-        if(value == null || value.isEmpty()) {
-            throw new RuntimeException(); //todo: add custom exception
-        }
     }
 }
