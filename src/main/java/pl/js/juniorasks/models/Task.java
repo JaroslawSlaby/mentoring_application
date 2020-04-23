@@ -4,16 +4,16 @@ import java.util.Objects;
 
 public final class Task {
 
-    private final Mentee mentee;
+    private final String menteeNick;
     private final String content;
 
-    public Task(Mentee mentee, String content) {
-        this.mentee = mentee;
+    public Task(String menteeNick, String content) {
+        this.menteeNick = menteeNick;
         this.content = content;
     }
 
-    public Mentee getMentee() {
-        return mentee;
+    public String getMenteeNick() {
+        return menteeNick;
     }
 
     public String getContent() {
@@ -25,12 +25,12 @@ public final class Task {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Task task = (Task) o;
-        return Objects.equals(mentee, task.mentee) &&
+        return Objects.equals(menteeNick, task.menteeNick) &&
                 Objects.equals(content, task.content);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(mentee, content);
+        return Objects.hash(menteeNick, content);
     }
 }

@@ -22,7 +22,7 @@ public class TaskProcessor {
 
     public Task createTaskForMentee(String menteeNick, String taskContent) {
         Mentee mentee = menteeProvider.getMentee(menteeNick);
-        Task task = new Task(mentee, taskContent);
+        Task task = new Task(menteeNick, taskContent);
         taskProvider.addTask(task);
         taskNotifiermanager.notifyMentee(mentee, task);
         return task;

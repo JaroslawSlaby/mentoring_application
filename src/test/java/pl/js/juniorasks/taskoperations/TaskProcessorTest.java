@@ -33,12 +33,11 @@ class TaskProcessorTest {
         TaskProcessor processor = new TaskProcessor(menteeProvider, taskProvider, taskNotifiermanager);
         Task task = processor.createTaskForMentee(MENTEE_NICK, TASK_CONTENT);
 
-        assertEquals(mentee, task.getMentee());
+        assertEquals(mentee.getNick(), task.getMenteeNick());
         assertEquals(TASK_CONTENT, task.getContent());
         verify(menteeProvider).getMentee(MENTEE_NICK);
         verify(taskProvider).addTask(task);
         verify(taskNotifiermanager).notifyMentee(mentee, task);
-
 
     }
 
