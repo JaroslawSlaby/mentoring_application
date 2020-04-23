@@ -19,9 +19,9 @@ public class MenteeService {
         return menteeProcessor.getMentee(menteeNick);
     }
 
-    public Mentee addMentee(String menteeNick) {
+    public Mentee addMentee(String menteeNick, String email) {
         validateStringValue(menteeNick);
-        return menteeProcessor.addMentee(menteeNick);
+        return menteeProcessor.addMentee(menteeNick, email);
     }
 
     public Mentee removeMentee(String menteeNick) {

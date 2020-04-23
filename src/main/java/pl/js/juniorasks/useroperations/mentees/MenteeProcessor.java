@@ -2,6 +2,7 @@ package pl.js.juniorasks.useroperations.mentees;
 
 import pl.js.juniorasks.models.Mentee;
 import pl.js.juniorasks.dataproviders.MenteeProvider;
+import pl.js.juniorasks.models.NotifyChannel;
 
 public class MenteeProcessor {
 
@@ -15,8 +16,9 @@ public class MenteeProcessor {
         return menteeProvider.getMentee(menteeNick);
     }
 
-    public Mentee addMentee(String menteeNick) {
-        Mentee mentee = new Mentee(menteeNick);
+    public Mentee addMentee(String menteeNick, String email) {
+        Mentee mentee = new Mentee(menteeNick, email);
+        mentee.addNotifyChannel(NotifyChannel.MAIL);
         menteeProvider.addMentee(mentee);
         return mentee;
     }

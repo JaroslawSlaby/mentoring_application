@@ -70,7 +70,7 @@ public class AssignmentProcessorTest {
         assertEquals(2, numberOfMentees);
     }
 
-//    @Test
+    @Test
     void emptyMenteeTest() {
         MentorProvider mentorProvider = mock(MentorProvider.class);
         when(mentorProvider.getMentor(MENTOR_NICK)).thenReturn(createMentor());
@@ -78,9 +78,9 @@ public class AssignmentProcessorTest {
         when(menteeProvider.getMentee(MENTEE_NICK_1)).thenReturn(null);
         AssignmentProcessor processor = new AssignmentProcessor(mentorProvider, menteeProvider);
 
-        assertThrows(NoSuchUserException.class,
-                () -> processor.assignMenteeToMentor(MENTOR_NICK, MENTEE_NICK_1));
+        Mentor mentor = processor.assignMenteeToMentor(MENTOR_NICK, MENTEE_NICK_1);
 
+        assertEquals(1, mentor.getNumberOfMentees());
     }
 
     @Test
@@ -118,6 +118,6 @@ public class AssignmentProcessorTest {
     }
 
     private Mentee createMentee(String nick) {
-        return new Mentee(nick);
+        return new Mentee(nick, "mail");
     }
 }

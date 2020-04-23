@@ -14,12 +14,13 @@ import static org.mockito.Mockito.when;
 class MenteeProcessorTest {
 
     private static final String MENTEE_NICK = "TestMenteeNick";
+    private static final String MENTEE_MAIL = "TestMenteeMail";
 
     @Test
     void getMenteeOkTest() {
         MenteeProvider menteeProvider = mock(MenteeProvider.class);
         MenteeProcessor processor = new MenteeProcessor(menteeProvider);
-        when(menteeProvider.getMentee(MENTEE_NICK)).thenReturn(new Mentee(MENTEE_NICK));
+        when(menteeProvider.getMentee(MENTEE_NICK)).thenReturn(new Mentee(MENTEE_NICK, MENTEE_MAIL));
 
         Mentee mentee = processor.getMentee(MENTEE_NICK);
 
@@ -33,7 +34,7 @@ class MenteeProcessorTest {
         MenteeProcessor processor = new MenteeProcessor(menteeProvider);
         doNothing().when(menteeProvider).addMentee(any());
 
-        Mentee mentee = processor.addMentee(MENTEE_NICK);
+        Mentee mentee = processor.addMentee(MENTEE_NICK, MENTEE_MAIL);
 
         assertEquals(MENTEE_NICK, mentee.getNick());
         verify(menteeProvider).addMentee(mentee);
@@ -46,8 +47,8 @@ class MenteeProcessorTest {
         MenteeProcessor processor = new MenteeProcessor(menteeProvider);
         doNothing().when(menteeProvider).addMentee(any());
         doNothing().when(menteeProvider).removeMentee(any());
-        when(menteeProvider.getMentee(MENTEE_NICK)).thenReturn(new Mentee(MENTEE_NICK));
-        processor.addMentee(MENTEE_NICK);
+        when(menteeProvider.getMentee(MENTEE_NICK)).thenReturn(new Mentee(MENTEE_NICK, MENTEE_MAIL));
+        processor.addMentee(MENTEE_NICK, MENTEE_MAIL);
 
         Mentee mentee = processor.removeMentee(MENTEE_NICK);
 
