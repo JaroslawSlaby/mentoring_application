@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
-import pl.js.juniorasks.models.dtos.Mentor;
+import pl.js.juniorasks.models.Mentor;
 
 @RestController("/mentors")
 public class MentorController {

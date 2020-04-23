@@ -1,13 +1,17 @@
-package pl.js.juniorasks.models.dtos;
+package pl.js.juniorasks.models;
 
 import java.util.Objects;
 
-public class Mentee {
+public final class Mentee {
 
     private final String nick;
 
     public Mentee(String nick) {
         this.nick = nick;
+    }
+
+    public String getNick() {
+        return nick;
     }
 
     @Override

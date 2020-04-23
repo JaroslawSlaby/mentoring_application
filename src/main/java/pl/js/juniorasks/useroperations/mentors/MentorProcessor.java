@@ -1,7 +1,7 @@
 package pl.js.juniorasks.useroperations.mentors;
 
-import pl.js.juniorasks.models.dtos.Mentor;
-import pl.js.juniorasks.userproviders.MentorProvider;
+import pl.js.juniorasks.models.Mentor;
+import pl.js.juniorasks.dataproviders.MentorProvider;
 
 public class MentorProcessor {
 

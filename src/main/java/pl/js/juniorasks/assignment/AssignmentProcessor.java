@@ -1,9 +1,9 @@
 package pl.js.juniorasks.assignment;
 
-import pl.js.juniorasks.userproviders.MenteeProvider;
-import pl.js.juniorasks.userproviders.MentorProvider;
-import pl.js.juniorasks.models.dtos.Mentee;
-import pl.js.juniorasks.models.dtos.Mentor;
+import pl.js.juniorasks.dataproviders.MenteeProvider;
+import pl.js.juniorasks.dataproviders.MentorProvider;
+import pl.js.juniorasks.models.Mentee;
+import pl.js.juniorasks.models.Mentor;
 
 public class AssignmentProcessor {
 

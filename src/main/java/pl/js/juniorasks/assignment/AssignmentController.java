@@ -6,7 +6,7 @@ import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RestController;
-import pl.js.juniorasks.models.dtos.Mentor;
+import pl.js.juniorasks.models.Mentor;
 
 @RestController("/assign")
 public class AssignmentController {

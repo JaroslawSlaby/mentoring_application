@@ -1,9 +1,11 @@
 package pl.js.juniorasks.assignment;
 
-import pl.js.juniorasks.models.dtos.Mentor;
+import org.springframework.stereotype.Service;
+import pl.js.juniorasks.models.Mentor;
 
 import static pl.js.juniorasks.tools.InputValidator.validateStringValue;
 
+@Service
 public class AssignmentService {
 
     private final AssignmentProcessor assignmentProcessor;

@@ -1,9 +1,11 @@
 package pl.js.juniorasks.useroperations.mentors;
 
-import pl.js.juniorasks.models.dtos.Mentor;
+import org.springframework.stereotype.Service;
+import pl.js.juniorasks.models.Mentor;
 
 import static pl.js.juniorasks.tools.InputValidator.validateStringValue;
 
+@Service
 public class MentorService {
 
     private final MentorProcessor mentorProcessor;

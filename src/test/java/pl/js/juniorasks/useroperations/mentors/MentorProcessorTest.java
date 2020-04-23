@@ -1,13 +1,14 @@
 package pl.js.juniorasks.useroperations.mentors;
 
 import org.junit.jupiter.api.Test;
-import pl.js.juniorasks.models.dtos.Mentor;
-import pl.js.juniorasks.userproviders.MentorProvider;
+import pl.js.juniorasks.models.Mentor;
+import pl.js.juniorasks.dataproviders.MentorProvider;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.doNothing;
 import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
 class MentorProcessorTest {
@@ -23,6 +24,7 @@ class MentorProcessorTest {
         Mentor mentor = processor.getMentor(MENTOR_NICK);
 
         assertEquals(MENTOR_NICK, mentor.getNick());
+        verify(mentorProvider).getMentor(MENTOR_NICK);
     }
 
     @Test
@@ -34,6 +36,7 @@ class MentorProcessorTest {
         Mentor mentor = processor.addMentor(MENTOR_NICK);
 
         assertEquals(MENTOR_NICK, mentor.getNick());
+        verify(mentorProvider).addMentor(mentor);
     }
 
 
@@ -49,5 +52,7 @@ class MentorProcessorTest {
         Mentor mentor = processor.removeMentor(MENTOR_NICK);
 
         assertEquals(MENTOR_NICK, mentor.getNick());
+        verify(mentorProvider).addMentor(mentor);
+        verify(mentorProvider).removeMentor(mentor);
     }
 }

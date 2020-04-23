@@ -1,6 +1,6 @@
-package pl.js.juniorasks.userproviders;
+package pl.js.juniorasks.dataproviders;
 
-import pl.js.juniorasks.models.dtos.Mentee;
+import pl.js.juniorasks.models.Mentee;
 
 public interface MenteeProvider {
 
