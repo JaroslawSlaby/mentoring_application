@@ -26,9 +26,9 @@ public class TaskController {
     }
 
     @PostMapping("/{menteeNick}/add-solution/{taskId}")
-    ResponseEntity<Solution> sendSolution(@PathVariable String menteeNick,
-                                          @PathVariable String taskId,
-                                          @RequestBody String solution) {
+    ResponseEntity<Solution> addSolution(@PathVariable String menteeNick,
+                                         @PathVariable String taskId,
+                                         @RequestBody String solution) {
         return new ResponseEntity<>(taskService.addSolution(menteeNick, taskId, solution), HttpStatus.OK);
     }
 }
