@@ -4,7 +4,7 @@ import pl.js.juniorasks.dataproviders.MenteeProvider;
 import pl.js.juniorasks.dataproviders.TaskProvider;
 import pl.js.juniorasks.models.Mentee;
 import pl.js.juniorasks.models.Task;
-import pl.js.juniorasks.taskoperations.notifiers.TaskNotifierManager;
+import pl.js.juniorasks.usernotifiers.TaskNotifierManager;
 import pl.js.juniorasks.tools.TaskIDGenerator;
 
 public class TaskProcessor {

@@ -1,4 +1,4 @@
-package pl.js.juniorasks.taskoperations.notifiers;
+package pl.js.juniorasks.usernotifiers;
 
 import pl.js.juniorasks.models.Mentee;
 import pl.js.juniorasks.models.Mentor;

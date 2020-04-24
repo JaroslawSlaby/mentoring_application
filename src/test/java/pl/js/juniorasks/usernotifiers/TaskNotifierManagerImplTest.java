@@ -1,4 +1,4 @@
-package pl.js.juniorasks.taskoperations.notifiers;
+package pl.js.juniorasks.usernotifiers;
 
 import org.junit.jupiter.api.Test;
 import pl.js.juniorasks.models.Mentee;
@@ -6,6 +6,7 @@ import pl.js.juniorasks.models.Mentor;
 import pl.js.juniorasks.models.NotifyChannel;
 import pl.js.juniorasks.models.Solution;
 import pl.js.juniorasks.models.Task;
+import pl.js.juniorasks.usernotifiers.notifiers.TaskNotifier;
 
 import java.time.LocalDateTime;
 import java.util.Map;

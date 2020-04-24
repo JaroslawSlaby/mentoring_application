@@ -1,4 +1,4 @@
-package pl.js.juniorasks.taskoperations;
+package pl.js.juniorasks.solutionoperations;
 
 import pl.js.juniorasks.dataproviders.MentorProvider;
 import pl.js.juniorasks.dataproviders.SolutionProvider;
@@ -6,7 +6,7 @@ import pl.js.juniorasks.dataproviders.TaskProvider;
 import pl.js.juniorasks.models.Mentor;
 import pl.js.juniorasks.models.Solution;
 import pl.js.juniorasks.models.Task;
-import pl.js.juniorasks.taskoperations.notifiers.TaskNotifierManager;
+import pl.js.juniorasks.usernotifiers.TaskNotifierManager;
 
 import java.time.LocalDateTime;
 
