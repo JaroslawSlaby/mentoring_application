@@ -50,7 +50,7 @@ class TaskNotifierManagerImplTest {
         Mentee mentee = new Mentee(MENTEE_NICK, MENTEE_MAIL);
         mentee.addNotifyChannel(NotifyChannel.MAIL);
         mentee.addNotifyChannel(NotifyChannel.SMS);
-        Task task = new Task(MENTEE_NICK, MENTOR_NICK, TASK_ID, "TestTaskContent");
+        Task task = new Task(MENTEE_NICK, MENTOR_NICK, TASK_ID, TASK_CONTENT);
         TaskNotifierManager manager = new TaskNotifierManagerImpl(mapMock);
 
         manager.notifyMentee(mentee, task);
