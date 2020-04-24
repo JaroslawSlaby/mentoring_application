@@ -5,10 +5,14 @@ import java.util.Objects;
 public final class Task {
 
     private final String menteeNick;
+    private final String mentorNick;
+    private final String id;
     private final String content;
 
-    public Task(String menteeNick, String content) {
+    public Task(String menteeNick, String mentorNick, String id, String content) {
         this.menteeNick = menteeNick;
+        this.mentorNick = mentorNick;
+        this.id = id;
         this.content = content;
     }
 
@@ -20,17 +24,28 @@ public final class Task {
         return content;
     }
 
+    public String getMentorNick() {
+        return mentorNick;
+    }
+
+    public String getId() {
+        return id;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Task task = (Task) o;
         return Objects.equals(menteeNick, task.menteeNick) &&
+                Objects.equals(mentorNick, task.mentorNick) &&
+                Objects.equals(id, task.id) &&
                 Objects.equals(content, task.content);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(menteeNick, content);
+        return Objects.hash(menteeNick, mentorNick, id, content);
     }
+
 }

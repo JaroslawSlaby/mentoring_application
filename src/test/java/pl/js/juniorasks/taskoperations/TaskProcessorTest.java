@@ -17,6 +17,7 @@ import static org.mockito.Mockito.when;
 class TaskProcessorTest {
 
     private static final String MENTEE_NICK = "TestMenteeNick";
+    private static final String MENTOR_NICK = "TestMentorNick";
     private static final String MENTEE_MAIL = "TestMenteeMail";
     private static final String TASK_CONTENT = "TestTaskContent";
 
@@ -31,7 +32,7 @@ class TaskProcessorTest {
         doNothing().when(taskNotifiermanager).notifyMentee(any(), any());
 
         TaskProcessor processor = new TaskProcessor(menteeProvider, taskProvider, taskNotifiermanager);
-        Task task = processor.createTaskForMentee(MENTEE_NICK, TASK_CONTENT);
+        Task task = processor.createTaskForMentee(MENTOR_NICK, MENTEE_NICK, TASK_CONTENT);
 
         assertEquals(mentee.getNick(), task.getMenteeNick());
         assertEquals(TASK_CONTENT, task.getContent());

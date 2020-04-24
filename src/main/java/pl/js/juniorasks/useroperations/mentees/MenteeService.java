@@ -21,6 +21,7 @@ public class MenteeService {
 
     public Mentee addMentee(String menteeNick, String email) {
         validateStringValue(menteeNick);
+        validateStringValue(email);
         return menteeProcessor.addMentee(menteeNick, email);
     }
 

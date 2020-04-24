@@ -1,9 +1,8 @@
 package pl.js.juniorasks.taskoperations.notifiers;
 
-import pl.js.juniorasks.models.Mentee;
-import pl.js.juniorasks.models.Task;
+import pl.js.juniorasks.models.User;
 
 public interface TaskNotifier {
     //todo: add more notifiers
-    void notify(Mentee mentee, Task task);
+    void notify(User user, Object body);
 }

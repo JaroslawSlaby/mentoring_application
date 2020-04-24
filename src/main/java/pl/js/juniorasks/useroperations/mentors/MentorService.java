@@ -19,9 +19,10 @@ public class MentorService {
         return mentorProcessor.getMentor(mentorNick);
     }
 
-    public Mentor addMentor(String mentorNick) {
+    public Mentor addMentor(String mentorNick, String email) {
         validateStringValue(mentorNick);
-        return mentorProcessor.addMentor(mentorNick);
+        validateStringValue(email);
+        return mentorProcessor.addMentor(mentorNick, email);
     }
 
     public Mentor removeMentor(String mentorNick) {

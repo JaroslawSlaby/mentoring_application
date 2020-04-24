@@ -6,6 +6,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
+import pl.js.juniorasks.models.Solution;
 import pl.js.juniorasks.models.Task;
 
 @RestController("/tasks")
@@ -17,8 +18,17 @@ public class TaskController {
         this.taskService = taskService;
     }
 
-    @PostMapping("/{menteeNick}")
-    ResponseEntity<Task> addTask(@PathVariable String menteeNick, @RequestBody String task) {
-        return new ResponseEntity<>(taskService.addTask(menteeNick, task), HttpStatus.OK);
+    @PostMapping("/{mentorNick}/add-task/{menteeNick}")
+    ResponseEntity<Task> addTask(@PathVariable String mentorNick,
+                                 @PathVariable String menteeNick,
+                                 @RequestBody String task) {
+        return new ResponseEntity<>(taskService.addTask(mentorNick, menteeNick, task), HttpStatus.OK);
+    }
+
+    @PostMapping("/{menteeNick}/add-solution/{taskId}")
+    ResponseEntity<Solution> sendSolution(@PathVariable String menteeNick,
+                                          @PathVariable String taskId,
+                                          @RequestBody String solution) {
+        return new ResponseEntity<>(taskService.addSolution(menteeNick, taskId, solution), HttpStatus.OK);
     }
 }

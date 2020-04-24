@@ -24,13 +24,14 @@ public class MentorController {
         return new ResponseEntity<>(mentorService.getMentor(mentorNick), HttpStatus.OK);
     }
 
-    @PostMapping
-    ResponseEntity<Mentor> addMentor(@RequestBody String mentorNick) {
-        return new ResponseEntity<>(mentorService.addMentor(mentorNick), HttpStatus.OK);
+    @PostMapping("/{mentorNick}")
+    ResponseEntity<Mentor> addMentor(@PathVariable String mentorNick,
+                                     @RequestBody String mentorEmail) {
+        return new ResponseEntity<>(mentorService.addMentor(mentorNick, mentorEmail), HttpStatus.OK);
     }
 
-    @DeleteMapping
-    ResponseEntity<Mentor> removeMentor(@RequestBody String mentorNick) {
+    @DeleteMapping("/{mentorNick}")
+    ResponseEntity<Mentor> removeMentor(@PathVariable String mentorNick) {
         return new ResponseEntity<>(mentorService.removeMentor(mentorNick), HttpStatus.OK);
     }
 }

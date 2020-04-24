@@ -1,17 +1,16 @@
 package pl.js.juniorasks.taskoperations.notifiers;
 
-import pl.js.juniorasks.models.Mentee;
-import pl.js.juniorasks.models.Task;
+import pl.js.juniorasks.models.User;
 
 public class MailNotifier implements TaskNotifier {
 
     @Override
-    public void notify(Mentee mentee, Task task) {
-        String email = mentee.getEmail();
-        sendMail(email, task);
+    public void notify(User user, Object body) {
+        String email = user.getEmail();
+        sendMail(email, body);
     }
 
-    private void sendMail(String email, Task task) {
-        //todo: implement sending mails in some way
+    private void sendMail(String email, Object body) {
+        //todo: implement sending mails in some way and add tests for this
     }
 }

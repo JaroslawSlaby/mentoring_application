@@ -114,7 +114,7 @@ public class AssignmentProcessorTest {
     }
 
     private Mentor createMentor() {
-        return new Mentor(MENTOR_NICK);
+        return new Mentor(MENTOR_NICK, "mail");
     }
 
     private Mentee createMentee(String nick) {

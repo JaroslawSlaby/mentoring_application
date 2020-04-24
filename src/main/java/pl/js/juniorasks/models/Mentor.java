@@ -1,17 +1,14 @@
 package pl.js.juniorasks.models;
 
 import java.util.HashSet;
-import java.util.Objects;
 import java.util.Set;
 
-public final class Mentor {
-
-    private final String nick;
+public final class Mentor extends User {
 
     private final Set<Mentee> assignedMentees = new HashSet<>();
 
-    public Mentor(String nick) {
-        this.nick = nick;
+    public Mentor(String nick, String email) {
+        super(nick, email);
     }
 
     public void assignMentee(Mentee mentee) {
@@ -30,21 +27,5 @@ public final class Mentor {
         return this.assignedMentees.size();
     }
 
-    public String getNick() {
-        return nick;
-    }
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        Mentor mentor = (Mentor) o;
-        return Objects.equals(nick, mentor.nick) &&
-                Objects.equals(assignedMentees, mentor.assignedMentees);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(nick, assignedMentees);
-    }
 }

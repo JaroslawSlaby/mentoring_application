@@ -10,7 +10,6 @@ import pl.js.juniorasks.models.Mentee;
 @RestController("/mentees")
 public class MenteeController {
 
-
     private final MenteeService menteeService;
 
     public MenteeController(MenteeService menteeService) {
