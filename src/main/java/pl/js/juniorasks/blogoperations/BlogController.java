@@ -6,8 +6,8 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
-import pl.js.juniorasks.models.InputPost;
-import pl.js.juniorasks.models.OutputPost;
+import pl.js.juniorasks.models.PostPrototype;
+import pl.js.juniorasks.models.Post;
 
 @RestController("/blog")
 public class BlogController {
@@ -19,7 +19,7 @@ public class BlogController {
     }
 
     @PostMapping("/{mentorId}")
-    ResponseEntity<OutputPost> addPost(@PathVariable String mentorId, @RequestBody InputPost content) {
+    ResponseEntity<Post> addPost(@PathVariable String mentorId, @RequestBody PostPrototype content) {
         return new ResponseEntity<>(blogService.addPost(mentorId, content), HttpStatus.OK);
     }
 }

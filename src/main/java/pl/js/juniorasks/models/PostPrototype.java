@@ -2,12 +2,12 @@ package pl.js.juniorasks.models;
 
 import java.util.Objects;
 
-public class InputPost {
+public class PostPrototype {
 
     private final String title;
     private final String content;
 
-    public InputPost(String title, String content) {
+    public PostPrototype(String title, String content) {
         this.title = title;
         this.content = content;
     }
@@ -24,9 +24,9 @@ public class InputPost {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        InputPost inputPost = (InputPost) o;
-        return Objects.equals(title, inputPost.title) &&
-                Objects.equals(content, inputPost.content);
+        PostPrototype postPrototype = (PostPrototype) o;
+        return Objects.equals(title, postPrototype.title) &&
+                Objects.equals(content, postPrototype.content);
     }
 
     @Override

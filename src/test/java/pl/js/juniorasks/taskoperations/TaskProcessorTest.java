@@ -5,6 +5,7 @@ import pl.js.juniorasks.dataproviders.MenteeProvider;
 import pl.js.juniorasks.dataproviders.TaskProvider;
 import pl.js.juniorasks.models.Mentee;
 import pl.js.juniorasks.models.Task;
+import pl.js.juniorasks.models.TaskPrototype;
 import pl.js.juniorasks.usernotifiers.NotifierManager;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -24,6 +25,7 @@ class TaskProcessorTest {
 
     @Test
     void okAddTaskTest() {
+        TaskPrototype taskPrototype = new TaskPrototype(MENTEE_NICK, MENTOR_NICK, TASK_CONTENT);
         Mentee mentee = new Mentee(MENTEE_NICK, MENTEE_MAIL);
         MenteeProvider menteeProvider = mock(MenteeProvider.class);
         when(menteeProvider.getMentee(MENTEE_NICK)).thenReturn(mentee);
@@ -33,7 +35,7 @@ class TaskProcessorTest {
         doNothing().when(notifiermanager).notifyUser(any(), any());
 
         TaskProcessor processor = new TaskProcessor(menteeProvider, taskProvider, notifiermanager);
-        Task task = processor.createTaskForMentee(MENTOR_NICK, MENTEE_NICK, TASK_CONTENT);
+        Task task = processor.createTaskForMentee(taskPrototype);
 
         assertEquals(mentee.getNick(), task.getMenteeNick());
         assertEquals(TASK_CONTENT, task.getContent());

@@ -3,15 +3,15 @@ package pl.js.juniorasks.models;
 import java.time.LocalDateTime;
 import java.util.Objects;
 
-public class OutputPost {
+public class Post {
 
     private final String title;
     private final String content;
     private final LocalDateTime timestamp;
 
-    public OutputPost(InputPost inputPost, LocalDateTime timestamp) {
-        this.title = inputPost.getTitle();
-        this.content = inputPost.getContent();
+    public Post(PostPrototype postPrototype, LocalDateTime timestamp) {
+        this.title = postPrototype.getTitle();
+        this.content = postPrototype.getContent();
         this.timestamp = timestamp;
     }
 
@@ -31,7 +31,7 @@ public class OutputPost {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        OutputPost post = (OutputPost) o;
+        Post post = (Post) o;
         return Objects.equals(title, post.title) &&
                 Objects.equals(content, post.content);
     }
