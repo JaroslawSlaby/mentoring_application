@@ -3,10 +3,9 @@ package pl.js.juniorasks.solutionoperations.sending;
 import org.junit.jupiter.api.Test;
 import pl.js.juniorasks.dataproviders.MentorProvider;
 import pl.js.juniorasks.dataproviders.SolutionProvider;
-import pl.js.juniorasks.dataproviders.TaskProvider;
+import pl.js.juniorasks.models.SolutionPrototype;
 import pl.js.juniorasks.models.Mentor;
 import pl.js.juniorasks.models.Solution;
-import pl.js.juniorasks.models.Task;
 import pl.js.juniorasks.usernotifiers.NotifierManager;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -25,6 +24,7 @@ class SolutionSendingProcessorTest {
 
     @Test
     void sendingSolutionOkTest() {
+        SolutionPrototype solutionPrototype = new SolutionPrototype(MENTEE_NICK, TASK_ID, SOLUTION_CONTENT);
         MentorProvider mentorProvider = mock(MentorProvider.class);
         Mentor mentor = new Mentor(MENTOR_NICK, "TestMentorMail");
         when(mentorProvider.getMentorBasedOnTaskId(TASK_ID)).thenReturn(mentor);
@@ -35,7 +35,7 @@ class SolutionSendingProcessorTest {
         SolutionSendingProcessor processor = new SolutionSendingProcessor(
                 mentorProvider, solutionProvider, notifierManager);
 
-        Solution solution = processor.sendSolution(MENTEE_NICK, TASK_ID, SOLUTION_CONTENT);
+        Solution solution = processor.sendSolution(solutionPrototype);
 
         assertEquals(MENTEE_NICK, solution.getMenteeNick());
         assertEquals(SOLUTION_CONTENT, solution.getSolutionContent());

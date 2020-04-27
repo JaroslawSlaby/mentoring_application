@@ -1,4 +1,4 @@
-package pl.js.juniorasks.assignment;
+package pl.js.juniorasks.assignmentoperations;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

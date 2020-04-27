@@ -1,4 +1,4 @@
-package pl.js.juniorasks.assignment;
+package pl.js.juniorasks.assignmentoperations;
 
 import org.springframework.stereotype.Service;
 import pl.js.juniorasks.models.Mentor;

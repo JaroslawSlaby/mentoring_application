@@ -1,4 +1,4 @@
-package pl.js.juniorasks.assignment;
+package pl.js.juniorasks.assignmentoperations;
 
 import pl.js.juniorasks.dataproviders.MenteeProvider;
 import pl.js.juniorasks.dataproviders.MentorProvider;

@@ -40,7 +40,6 @@ class TaskProcessorTest {
         verify(menteeProvider).getMentee(MENTEE_NICK);
         verify(taskProvider).addTask(task);
         verify(notifiermanager).notifyUser(mentee, task);
-
     }
 
     @Test

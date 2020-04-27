@@ -1,30 +1,19 @@
 package pl.js.juniorasks.models;
 
-import java.time.LocalDateTime;
 import java.util.Objects;
 
-public class Solution {
+public class SolutionPrototype {
 
-    private final String solutionId;
     private final String menteeNick;
     private final String taskId;
-    private final LocalDateTime solutionTimeStamp;
     private final String solutionContent;
 
-    public Solution(String solutionId,
-                    String menteeNick,
-                    String taskId,
-                    LocalDateTime solutionTimeStamp,
-                    String solutionContent) {
-        this.solutionId = solutionId;
+    public SolutionPrototype(String menteeNick,
+                             String taskId,
+                             String solutionContent) {
         this.menteeNick = menteeNick;
         this.taskId = taskId;
-        this.solutionTimeStamp = solutionTimeStamp;
         this.solutionContent = solutionContent;
-    }
-
-    public String getSolutionId() {
-        return solutionId;
     }
 
     public String getMenteeNick() {
@@ -35,10 +24,6 @@ public class Solution {
         return taskId;
     }
 
-    public LocalDateTime getSolutionTimeStamp() {
-        return solutionTimeStamp;
-    }
-
     public String getSolutionContent() {
         return solutionContent;
     }
@@ -47,15 +32,14 @@ public class Solution {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        Solution that = (Solution) o;
-        return Objects.equals(solutionId, that.solutionId) &&
-                Objects.equals(menteeNick, that.menteeNick) &&
+        SolutionPrototype that = (SolutionPrototype) o;
+        return Objects.equals(menteeNick, that.menteeNick) &&
                 Objects.equals(taskId, that.taskId) &&
                 Objects.equals(solutionContent, that.solutionContent);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(solutionId, menteeNick, taskId, solutionContent);
+        return Objects.hash(menteeNick, taskId, solutionContent);
     }
 }

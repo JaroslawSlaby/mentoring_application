@@ -7,7 +7,6 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
-import pl.js.juniorasks.models.Solution;
 import pl.js.juniorasks.models.Task;
 
 @RestController("/tasks")
@@ -25,7 +24,7 @@ public class TaskController {
     }
 
     @PostMapping("/{mentorNick}/add-task/{menteeNick}")
-    ResponseEntity<Task> addTask(@PathVariable String mentorNick,
+    ResponseEntity<Task> addTask(@PathVariable String mentorNick, //todo: introduce input task and output task or task project and task result!
                                  @PathVariable String menteeNick,
                                  @RequestBody String task) {
         return new ResponseEntity<>(taskService.addTask(mentorNick, menteeNick, task), HttpStatus.OK);

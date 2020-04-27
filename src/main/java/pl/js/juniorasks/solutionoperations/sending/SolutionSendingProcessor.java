@@ -2,7 +2,7 @@ package pl.js.juniorasks.solutionoperations.sending;
 
 import pl.js.juniorasks.dataproviders.MentorProvider;
 import pl.js.juniorasks.dataproviders.SolutionProvider;
-import pl.js.juniorasks.dataproviders.TaskProvider;
+import pl.js.juniorasks.models.SolutionPrototype;
 import pl.js.juniorasks.models.Mentor;
 import pl.js.juniorasks.models.Solution;
 import pl.js.juniorasks.tools.IDGenerator;
@@ -24,15 +24,15 @@ public class SolutionSendingProcessor {
         this.notifierManager = notifierManager;
     }
 
-    public Solution sendSolution(String menteeNick, String taskId, String solutionContent) {
-        Mentor mentor = mentorProvider.getMentorBasedOnTaskId(taskId);
-        Solution solution = new Solution(IDGenerator.getNextId(),
-                menteeNick,
-                taskId,
+    public Solution sendSolution(SolutionPrototype solution) {
+        Mentor mentor = mentorProvider.getMentorBasedOnTaskId(solution.getTaskId());
+        Solution outputSolution = new Solution(IDGenerator.getNextId(),
+                solution.getMenteeNick(),
+                solution.getTaskId(),
                 LocalDateTime.now(),
-                solutionContent);
-        solutionProvider.addSolution(solution);
-        notifierManager.notifyUser(mentor, solution);
-        return solution;
+                solution.getSolutionContent());
+        solutionProvider.addSolution(outputSolution);
+        notifierManager.notifyUser(mentor, outputSolution);
+        return outputSolution;
     }
 }

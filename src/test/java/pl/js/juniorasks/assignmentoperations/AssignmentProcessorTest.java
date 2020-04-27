@@ -1,4 +1,4 @@
-package pl.js.juniorasks.assignment;
+package pl.js.juniorasks.assignmentoperations;
 
 import org.junit.jupiter.api.Test;
 import pl.js.juniorasks.models.Mentee;

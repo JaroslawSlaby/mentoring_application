@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
+import pl.js.juniorasks.models.SolutionPrototype;
 import pl.js.juniorasks.models.Rate;
 import pl.js.juniorasks.models.Solution;
 
@@ -24,11 +25,9 @@ public class SolutionController {
         return new ResponseEntity<>(solutionService.getSolution(solutionId), HttpStatus.OK);
     }
 
-    @PostMapping("/{menteeNick}/add-solution/{taskId}")
-    ResponseEntity<Solution> addSolution(@PathVariable String menteeNick,
-                                         @PathVariable String taskId,
-                                         @RequestBody String solution) {
-        return new ResponseEntity<>(solutionService.addSolution(menteeNick, taskId, solution), HttpStatus.OK);
+    @PostMapping
+    ResponseEntity<Solution> addSolution(@RequestBody SolutionPrototype solution) {
+        return new ResponseEntity<>(solutionService.addSolution(solution), HttpStatus.OK);
     }
 
     @PostMapping("{solutionId}/rate-solution/{rate}")
