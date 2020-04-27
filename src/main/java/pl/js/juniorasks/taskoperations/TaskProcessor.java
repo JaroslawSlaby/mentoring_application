@@ -21,6 +21,10 @@ public class TaskProcessor {
         this.notifierManager = notifiermanager;
     }
 
+    public Task getTask(String taskId) {
+        return taskProvider.getTask(taskId);
+    }
+
     public Task createTaskForMentee(String mentorNick, String menteeNick, String taskContent) {
         Mentee mentee = menteeProvider.getMentee(menteeNick);
         Task task = new Task(menteeNick, mentorNick, IDGenerator.getNextId(), taskContent);
@@ -28,5 +32,4 @@ public class TaskProcessor {
         notifierManager.notifyUser(mentee, task);
         return task;
     }
-
 }

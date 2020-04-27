@@ -2,7 +2,6 @@ package pl.js.juniorasks.taskoperations;
 
 import org.springframework.stereotype.Service;
 import pl.js.juniorasks.models.Task;
-import pl.js.juniorasks.solutionoperations.SolutionProcessor;
 
 import static pl.js.juniorasks.tools.InputValidator.validateStringValue;
 
@@ -13,6 +12,12 @@ public class TaskService {
 
     public TaskService(TaskProcessor taskProcessor) {
         this.taskProcessor = taskProcessor;
+    }
+
+    public Task getTask(String taskId) {
+        validateStringValue(taskId);
+
+        return taskProcessor.getTask(taskId);
     }
 
     public Task addTask(String mentorNick, String menteeNick, String task) {

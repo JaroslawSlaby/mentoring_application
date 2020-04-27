@@ -25,17 +25,14 @@ class SolutionSendingProcessorTest {
 
     @Test
     void sendingSolutionOkTest() {
-        TaskProvider taskProvider = mock(TaskProvider.class);
-        Task task = new Task(MENTEE_NICK, MENTOR_NICK, TASK_ID, "TestTaskContent");
-        when(taskProvider.getTask(TASK_ID)).thenReturn(task);
         MentorProvider mentorProvider = mock(MentorProvider.class);
         Mentor mentor = new Mentor(MENTOR_NICK, "TestMentorMail");
-        when(mentorProvider.getMentor(MENTOR_NICK)).thenReturn(mentor);
+        when(mentorProvider.getMentorBasedOnTaskId(TASK_ID)).thenReturn(mentor);
         SolutionProvider solutionProvider = mock(SolutionProvider.class);
         doNothing().when(solutionProvider).addSolution(any());
         NotifierManager notifierManager = mock(NotifierManager.class);
         doNothing().when(notifierManager).notifyUser(any(), any());
-        SolutionSendingProcessor processor = new SolutionSendingProcessor(taskProvider,
+        SolutionSendingProcessor processor = new SolutionSendingProcessor(
                 mentorProvider, solutionProvider, notifierManager);
 
         Solution solution = processor.sendSolution(MENTEE_NICK, TASK_ID, SOLUTION_CONTENT);
@@ -44,8 +41,7 @@ class SolutionSendingProcessorTest {
         assertEquals(SOLUTION_CONTENT, solution.getSolutionContent());
         assertEquals(TASK_ID, solution.getTaskId());
 
-        verify(taskProvider).getTask(TASK_ID);
-        verify(mentorProvider).getMentor(MENTOR_NICK);
+        verify(mentorProvider).getMentorBasedOnTaskId(TASK_ID);
         verify(solutionProvider).addSolution(solution);
         verify(notifierManager).notifyUser(mentor, solution);
     }

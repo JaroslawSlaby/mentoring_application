@@ -20,9 +20,10 @@ class TaskProcessorTest {
     private static final String MENTOR_NICK = "TestMentorNick";
     private static final String MENTEE_MAIL = "TestMenteeMail";
     private static final String TASK_CONTENT = "TestTaskContent";
+    private static final String TASK_ID = "TestTaskId";
 
     @Test
-    void okTest() {
+    void okAddTaskTest() {
         Mentee mentee = new Mentee(MENTEE_NICK, MENTEE_MAIL);
         MenteeProvider menteeProvider = mock(MenteeProvider.class);
         when(menteeProvider.getMentee(MENTEE_NICK)).thenReturn(mentee);
@@ -40,6 +41,21 @@ class TaskProcessorTest {
         verify(taskProvider).addTask(task);
         verify(notifiermanager).notifyUser(mentee, task);
 
+    }
+
+    @Test
+    void okGetTaskTest() {
+        MenteeProvider menteeProvider = mock(MenteeProvider.class);
+        Task task = new Task(MENTEE_NICK, MENTOR_NICK, TASK_ID, TASK_CONTENT);
+        TaskProvider taskProvider = mock(TaskProvider.class);
+        when(taskProvider.getTask(any())).thenReturn(task);
+        NotifierManager notifierManager = mock(NotifierManager.class);
+
+        TaskProcessor processor = new TaskProcessor(menteeProvider, taskProvider, notifierManager);
+        Task returnedTask = processor.getTask(TASK_ID);
+
+        assertEquals(TASK_CONTENT, returnedTask.getContent());
+        verify(taskProvider).getTask(TASK_ID);
     }
 
 }
