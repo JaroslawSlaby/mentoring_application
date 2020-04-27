@@ -5,16 +5,31 @@ import java.util.Objects;
 
 public class Solution {
 
+    private final String solutionId;
     private final String menteeNick;
     private final String taskId;
     private final LocalDateTime solutionTimeStamp;
     private final String solutionContent;
+    private Rate rate = Rate.F;
 
-    public Solution(String menteeNick, String taskId, LocalDateTime solutionTimeStamp, String solutionContent) {
+    public Solution(String solutionId,
+                    String menteeNick,
+                    String taskId,
+                    LocalDateTime solutionTimeStamp,
+                    String solutionContent) { //todo: consider builder pattern
+        this.solutionId = solutionId;
         this.menteeNick = menteeNick;
         this.taskId = taskId;
         this.solutionTimeStamp = solutionTimeStamp;
         this.solutionContent = solutionContent;
+    }
+
+    public void rateSolution(Rate rate) {
+        this.rate = rate;
+    }
+
+    public String getSolutionId() {
+        return solutionId;
     }
 
     public String getMenteeNick() {
@@ -31,6 +46,10 @@ public class Solution {
 
     public String getSolutionContent() {
         return solutionContent;
+    }
+
+    public Rate getRate() {
+        return rate;
     }
 
     @Override

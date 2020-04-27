@@ -24,6 +24,7 @@ class TaskNotifierManagerImplTest {
     private static final String MENTEE_MAIL = "TestMenteeMail";
     private static final String TASK_CONTENT = "TestTaskContent";
     private static final String TASK_ID = "1";
+    private static final String SOLUTION_ID = "1";
     private static final String SOLUTION_CONTENT = "TestSolutionContent";
 
     @Test
@@ -36,7 +37,7 @@ class TaskNotifierManagerImplTest {
         Task task = new Task(MENTEE_NICK, MENTOR_NICK, TASK_ID, TASK_CONTENT);
         TaskNotifierManager manager = new TaskNotifierManagerImpl(mapMock);
 
-        manager.notifyMentee(mentee, task);
+        manager.notifyUser(mentee, task);
 
         verify(mapMock).get(NotifyChannel.MAIL);
         verify(taskNotifier).notify(mentee, task);
@@ -54,7 +55,7 @@ class TaskNotifierManagerImplTest {
         Task task = new Task(MENTEE_NICK, MENTOR_NICK, TASK_ID, TASK_CONTENT);
         TaskNotifierManager manager = new TaskNotifierManagerImpl(mapMock);
 
-        manager.notifyMentee(mentee, task);
+        manager.notifyUser(mentee, task);
 
         verify(mapMock).get(NotifyChannel.MAIL);
         verify(mapMock).get(NotifyChannel.SMS);
@@ -68,10 +69,10 @@ class TaskNotifierManagerImplTest {
         when(mapMock.get(NotifyChannel.MAIL)).thenReturn(taskNotifier);
         Mentor mentor = new Mentor(MENTEE_NICK, MENTOR_MAIL);
         mentor.addNotifyChannel(NotifyChannel.MAIL);
-        Solution solution = new Solution(MENTEE_NICK, TASK_ID, LocalDateTime.now(), SOLUTION_CONTENT);
+        Solution solution = new Solution(SOLUTION_ID, MENTEE_NICK, TASK_ID, LocalDateTime.now(), SOLUTION_CONTENT);
         TaskNotifierManager manager = new TaskNotifierManagerImpl(mapMock);
 
-        manager.notifyMentor(mentor, solution);
+        manager.notifyUser(mentor, solution);
 
         verify(mapMock).get(NotifyChannel.MAIL);
         verify(taskNotifier).notify(mentor, solution);
@@ -86,10 +87,10 @@ class TaskNotifierManagerImplTest {
         Mentor mentor = new Mentor(MENTEE_NICK, MENTOR_MAIL);
         mentor.addNotifyChannel(NotifyChannel.MAIL);
         mentor.addNotifyChannel(NotifyChannel.SMS);
-        Solution solution = new Solution(MENTEE_NICK, TASK_ID, LocalDateTime.now(), SOLUTION_CONTENT);
+        Solution solution = new Solution(SOLUTION_ID, MENTEE_NICK, TASK_ID, LocalDateTime.now(), SOLUTION_CONTENT);
         TaskNotifierManager manager = new TaskNotifierManagerImpl(mapMock);
 
-        manager.notifyMentor(mentor, solution);
+        manager.notifyUser(mentor, solution);
 
         verify(mapMock).get(NotifyChannel.MAIL);
         verify(mapMock).get(NotifyChannel.SMS);

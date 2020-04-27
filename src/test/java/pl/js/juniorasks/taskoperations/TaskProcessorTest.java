@@ -29,7 +29,7 @@ class TaskProcessorTest {
         TaskProvider taskProvider = mock(TaskProvider.class);
         doNothing().when(taskProvider).addTask(any());
         TaskNotifierManager taskNotifiermanager = mock(TaskNotifierManager.class);
-        doNothing().when(taskNotifiermanager).notifyMentee(any(), any());
+        doNothing().when(taskNotifiermanager).notifyUser(any(), any());
 
         TaskProcessor processor = new TaskProcessor(menteeProvider, taskProvider, taskNotifiermanager);
         Task task = processor.createTaskForMentee(MENTOR_NICK, MENTEE_NICK, TASK_CONTENT);
@@ -38,7 +38,7 @@ class TaskProcessorTest {
         assertEquals(TASK_CONTENT, task.getContent());
         verify(menteeProvider).getMentee(MENTEE_NICK);
         verify(taskProvider).addTask(task);
-        verify(taskNotifiermanager).notifyMentee(mentee, task);
+        verify(taskNotifiermanager).notifyUser(mentee, task);
 
     }
 

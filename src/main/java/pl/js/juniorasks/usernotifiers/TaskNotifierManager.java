@@ -1,13 +1,9 @@
 package pl.js.juniorasks.usernotifiers;
 
-import pl.js.juniorasks.models.Mentee;
-import pl.js.juniorasks.models.Mentor;
-import pl.js.juniorasks.models.Solution;
-import pl.js.juniorasks.models.Task;
+import pl.js.juniorasks.models.User;
 
 public interface TaskNotifierManager {
 
-    void notifyMentee(Mentee mentee, Task task);
+    void notifyUser(User user, Object notification);
 
-    void notifyMentor(Mentor mentor, Solution solution);
 }

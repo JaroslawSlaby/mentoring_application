@@ -1,10 +1,7 @@
 package pl.js.juniorasks.usernotifiers;
 
-import pl.js.juniorasks.models.Mentee;
-import pl.js.juniorasks.models.Mentor;
 import pl.js.juniorasks.models.NotifyChannel;
-import pl.js.juniorasks.models.Solution;
-import pl.js.juniorasks.models.Task;
+import pl.js.juniorasks.models.User;
 import pl.js.juniorasks.usernotifiers.notifiers.TaskNotifier;
 
 import java.util.Map;
@@ -18,15 +15,9 @@ public class TaskNotifierManagerImpl implements TaskNotifierManager {
     }
 
     @Override
-    public void notifyMentee(Mentee mentee, Task task) {
-        mentee.getNotifyChannels().forEach(notifyChannel ->
-                this.notifiers.get(notifyChannel).notify(mentee, task));
+    public void notifyUser(User user, Object notification) {
+        user.getNotifyChannels().forEach(notifyChannel ->
+                this.notifiers.get(notifyChannel).notify(user, notification));
     }
-
-    @Override
-    public void notifyMentor(Mentor mentor, Solution solution) {
-        mentor.getNotifyChannels().forEach(notifyChannel ->
-                this.notifiers.get(notifyChannel).notify(mentor, solution));
-    }
-
+    
 }
