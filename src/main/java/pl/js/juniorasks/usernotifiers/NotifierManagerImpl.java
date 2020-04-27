@@ -6,11 +6,11 @@ import pl.js.juniorasks.usernotifiers.notifiers.TaskNotifier;
 
 import java.util.Map;
 
-public class TaskNotifierManagerImpl implements TaskNotifierManager {
+public class NotifierManagerImpl implements NotifierManager {
 
     private final Map<NotifyChannel, TaskNotifier> notifiers;
 
-    public TaskNotifierManagerImpl(Map<NotifyChannel, TaskNotifier> notifiers) {
+    public NotifierManagerImpl(Map<NotifyChannel, TaskNotifier> notifiers) {
         this.notifiers = notifiers;
     }
 

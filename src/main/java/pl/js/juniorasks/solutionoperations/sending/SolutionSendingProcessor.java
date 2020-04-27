@@ -7,7 +7,7 @@ import pl.js.juniorasks.models.Mentor;
 import pl.js.juniorasks.models.Solution;
 import pl.js.juniorasks.models.Task;
 import pl.js.juniorasks.tools.IDGenerator;
-import pl.js.juniorasks.usernotifiers.TaskNotifierManager;
+import pl.js.juniorasks.usernotifiers.NotifierManager;
 
 import java.time.LocalDateTime;
 
@@ -16,16 +16,16 @@ public class SolutionSendingProcessor {
     private final TaskProvider taskProvider;
     private final MentorProvider mentorProvider;
     private final SolutionProvider solutionProvider;
-    private final TaskNotifierManager taskNotifierManager;
+    private final NotifierManager notifierManager;
 
     public SolutionSendingProcessor(TaskProvider taskProvider,
                                     MentorProvider mentorProvider,
                                     SolutionProvider solutionProvider,
-                                    TaskNotifierManager taskNotifierManager) {
+                                    NotifierManager notifierManager) {
         this.taskProvider = taskProvider;
         this.mentorProvider = mentorProvider;
         this.solutionProvider = solutionProvider;
-        this.taskNotifierManager = taskNotifierManager;
+        this.notifierManager = notifierManager;
     }
 
     public Solution sendSolution(String menteeNick, String taskId, String solutionContent) {
@@ -37,7 +37,7 @@ public class SolutionSendingProcessor {
                 LocalDateTime.now(),
                 solutionContent);
         solutionProvider.addSolution(solution);
-        taskNotifierManager.notifyUser(mentor, solution);
+        notifierManager.notifyUser(mentor, solution);
         return solution;
     }
 }

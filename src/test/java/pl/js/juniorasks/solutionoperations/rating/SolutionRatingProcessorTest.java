@@ -8,7 +8,7 @@ import pl.js.juniorasks.models.Mentee;
 import pl.js.juniorasks.models.Rate;
 import pl.js.juniorasks.models.Solution;
 import pl.js.juniorasks.models.Task;
-import pl.js.juniorasks.usernotifiers.TaskNotifierManager;
+import pl.js.juniorasks.usernotifiers.NotifierManager;
 
 import java.time.LocalDateTime;
 
@@ -38,10 +38,10 @@ class SolutionRatingProcessorTest {
         SolutionProvider solutionProvider = mock(SolutionProvider.class);
         Solution solution = new Solution(SOLUTION_ID, MENTEE_NICK, TASK_ID, LocalDateTime.now(), SOLUTION_CONTENT);
         when(solutionProvider.getSolution(SOLUTION_ID)).thenReturn(solution);
-        TaskNotifierManager taskNotifierManager = mock(TaskNotifierManager.class);
-        doNothing().when(taskNotifierManager).notifyUser(any(), any());
+        NotifierManager notifierManager = mock(NotifierManager.class);
+        doNothing().when(notifierManager).notifyUser(any(), any());
 
-        SolutionRatingProcessor processor = new SolutionRatingProcessor(solutionProvider, menteeProvider, taskNotifierManager);
+        SolutionRatingProcessor processor = new SolutionRatingProcessor(solutionProvider, menteeProvider, notifierManager);
 
         Rate rate = processor.rateSolution(SOLUTION_ID, "A");
 
@@ -49,7 +49,7 @@ class SolutionRatingProcessorTest {
         verify(solutionProvider).getSolution(SOLUTION_ID);
         verify(solutionProvider).rateSolution(solution, Rate.A);
         verify(menteeProvider).getMentee(MENTEE_NICK);
-        verify(taskNotifierManager).notifyUser(mentee, solution);
+        verify(notifierManager).notifyUser(mentee, solution);
 
     }
 

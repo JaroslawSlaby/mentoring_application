@@ -16,7 +16,7 @@ import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
-class TaskNotifierManagerImplTest {
+class NotifierManagerImplTest {
 
     private static final String MENTEE_NICK = "TestMenteeNick";
     private static final String MENTOR_NICK = "TestMentorNick";
@@ -35,7 +35,7 @@ class TaskNotifierManagerImplTest {
         Mentee mentee = new Mentee(MENTEE_NICK, MENTEE_MAIL);
         mentee.addNotifyChannel(NotifyChannel.MAIL);
         Task task = new Task(MENTEE_NICK, MENTOR_NICK, TASK_ID, TASK_CONTENT);
-        TaskNotifierManager manager = new TaskNotifierManagerImpl(mapMock);
+        NotifierManager manager = new NotifierManagerImpl(mapMock);
 
         manager.notifyUser(mentee, task);
 
@@ -53,7 +53,7 @@ class TaskNotifierManagerImplTest {
         mentee.addNotifyChannel(NotifyChannel.MAIL);
         mentee.addNotifyChannel(NotifyChannel.SMS);
         Task task = new Task(MENTEE_NICK, MENTOR_NICK, TASK_ID, TASK_CONTENT);
-        TaskNotifierManager manager = new TaskNotifierManagerImpl(mapMock);
+        NotifierManager manager = new NotifierManagerImpl(mapMock);
 
         manager.notifyUser(mentee, task);
 
@@ -70,7 +70,7 @@ class TaskNotifierManagerImplTest {
         Mentor mentor = new Mentor(MENTEE_NICK, MENTOR_MAIL);
         mentor.addNotifyChannel(NotifyChannel.MAIL);
         Solution solution = new Solution(SOLUTION_ID, MENTEE_NICK, TASK_ID, LocalDateTime.now(), SOLUTION_CONTENT);
-        TaskNotifierManager manager = new TaskNotifierManagerImpl(mapMock);
+        NotifierManager manager = new NotifierManagerImpl(mapMock);
 
         manager.notifyUser(mentor, solution);
 
@@ -88,7 +88,7 @@ class TaskNotifierManagerImplTest {
         mentor.addNotifyChannel(NotifyChannel.MAIL);
         mentor.addNotifyChannel(NotifyChannel.SMS);
         Solution solution = new Solution(SOLUTION_ID, MENTEE_NICK, TASK_ID, LocalDateTime.now(), SOLUTION_CONTENT);
-        TaskNotifierManager manager = new TaskNotifierManagerImpl(mapMock);
+        NotifierManager manager = new NotifierManagerImpl(mapMock);
 
         manager.notifyUser(mentor, solution);
 

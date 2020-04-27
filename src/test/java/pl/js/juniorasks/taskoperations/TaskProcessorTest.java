@@ -5,7 +5,7 @@ import pl.js.juniorasks.dataproviders.MenteeProvider;
 import pl.js.juniorasks.dataproviders.TaskProvider;
 import pl.js.juniorasks.models.Mentee;
 import pl.js.juniorasks.models.Task;
-import pl.js.juniorasks.usernotifiers.TaskNotifierManager;
+import pl.js.juniorasks.usernotifiers.NotifierManager;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.ArgumentMatchers.any;
@@ -28,17 +28,17 @@ class TaskProcessorTest {
         when(menteeProvider.getMentee(MENTEE_NICK)).thenReturn(mentee);
         TaskProvider taskProvider = mock(TaskProvider.class);
         doNothing().when(taskProvider).addTask(any());
-        TaskNotifierManager taskNotifiermanager = mock(TaskNotifierManager.class);
-        doNothing().when(taskNotifiermanager).notifyUser(any(), any());
+        NotifierManager notifiermanager = mock(NotifierManager.class);
+        doNothing().when(notifiermanager).notifyUser(any(), any());
 
-        TaskProcessor processor = new TaskProcessor(menteeProvider, taskProvider, taskNotifiermanager);
+        TaskProcessor processor = new TaskProcessor(menteeProvider, taskProvider, notifiermanager);
         Task task = processor.createTaskForMentee(MENTOR_NICK, MENTEE_NICK, TASK_CONTENT);
 
         assertEquals(mentee.getNick(), task.getMenteeNick());
         assertEquals(TASK_CONTENT, task.getContent());
         verify(menteeProvider).getMentee(MENTEE_NICK);
         verify(taskProvider).addTask(task);
-        verify(taskNotifiermanager).notifyUser(mentee, task);
+        verify(notifiermanager).notifyUser(mentee, task);
 
     }
 

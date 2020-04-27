@@ -7,7 +7,7 @@ import pl.js.juniorasks.dataproviders.TaskProvider;
 import pl.js.juniorasks.models.Mentor;
 import pl.js.juniorasks.models.Solution;
 import pl.js.juniorasks.models.Task;
-import pl.js.juniorasks.usernotifiers.TaskNotifierManager;
+import pl.js.juniorasks.usernotifiers.NotifierManager;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.ArgumentMatchers.any;
@@ -33,10 +33,10 @@ class SolutionSendingProcessorTest {
         when(mentorProvider.getMentor(MENTOR_NICK)).thenReturn(mentor);
         SolutionProvider solutionProvider = mock(SolutionProvider.class);
         doNothing().when(solutionProvider).addSolution(any());
-        TaskNotifierManager taskNotifierManager = mock(TaskNotifierManager.class);
-        doNothing().when(taskNotifierManager).notifyUser(any(), any());
+        NotifierManager notifierManager = mock(NotifierManager.class);
+        doNothing().when(notifierManager).notifyUser(any(), any());
         SolutionSendingProcessor processor = new SolutionSendingProcessor(taskProvider,
-                mentorProvider, solutionProvider, taskNotifierManager);
+                mentorProvider, solutionProvider, notifierManager);
 
         Solution solution = processor.sendSolution(MENTEE_NICK, TASK_ID, SOLUTION_CONTENT);
 
@@ -47,7 +47,7 @@ class SolutionSendingProcessorTest {
         verify(taskProvider).getTask(TASK_ID);
         verify(mentorProvider).getMentor(MENTOR_NICK);
         verify(solutionProvider).addSolution(solution);
-        verify(taskNotifierManager).notifyUser(mentor, solution);
+        verify(notifierManager).notifyUser(mentor, solution);
     }
 
 }

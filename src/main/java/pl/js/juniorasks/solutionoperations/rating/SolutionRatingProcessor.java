@@ -5,20 +5,20 @@ import pl.js.juniorasks.dataproviders.SolutionProvider;
 import pl.js.juniorasks.models.Mentee;
 import pl.js.juniorasks.models.Rate;
 import pl.js.juniorasks.models.Solution;
-import pl.js.juniorasks.usernotifiers.TaskNotifierManager;
+import pl.js.juniorasks.usernotifiers.NotifierManager;
 
 public class SolutionRatingProcessor {
 
     private final SolutionProvider solutionProvider;
     private final MenteeProvider menteeProvider;
-    private final TaskNotifierManager taskNotifierManager;
+    private final NotifierManager notifierManager;
 
     public SolutionRatingProcessor(SolutionProvider solutionProvider,
                                    MenteeProvider menteeProvider,
-                                   TaskNotifierManager taskNotifierManager) {
+                                   NotifierManager notifierManager) {
         this.solutionProvider = solutionProvider;
         this.menteeProvider = menteeProvider;
-        this.taskNotifierManager = taskNotifierManager;
+        this.notifierManager = notifierManager;
     }
 
     public Rate rateSolution(String solutionId, String rate) {
@@ -26,7 +26,7 @@ public class SolutionRatingProcessor {
         Rate solutionRate = calculateRate(rate);
         solutionProvider.rateSolution(solution, solutionRate);
         Mentee mentee = menteeProvider.getMentee(solution.getMenteeNick());
-        taskNotifierManager.notifyUser(mentee, solution); //todo: consider if solutionId and rate will be enough
+        notifierManager.notifyUser(mentee, solution); //todo: consider if solutionId and rate will be enough
         return solutionRate;
     }
 
