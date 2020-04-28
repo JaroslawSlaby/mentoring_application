@@ -2,7 +2,7 @@ package pl.js.juniorasks.models;
 
 import java.util.Objects;
 
-public class SolutionPrototype {
+public final class SolutionPrototype {
 
     private final String menteeNick;
     private final String taskId;

@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
-public class User {
+public class User { //todo maybe it can be interface??
 
     protected final String nick;
     protected final String email;
@@ -34,7 +34,6 @@ public class User {
     public void removeNotifyChannel(NotifyChannel notifyChannel) {
         this.notifyChannels.remove(notifyChannel);
     }
-
 
     @Override
     public boolean equals(Object o) {

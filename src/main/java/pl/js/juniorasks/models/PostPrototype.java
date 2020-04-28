@@ -2,7 +2,7 @@ package pl.js.juniorasks.models;
 
 import java.util.Objects;
 
-public class PostPrototype {
+public final class PostPrototype {
 
     private final String title;
     private final String content;

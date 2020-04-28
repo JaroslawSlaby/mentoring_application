@@ -3,7 +3,7 @@ package pl.js.juniorasks.models;
 import java.time.LocalDateTime;
 import java.util.Objects;
 
-public class Post {
+public final class Post {
 
     private final String title;
     private final String content;

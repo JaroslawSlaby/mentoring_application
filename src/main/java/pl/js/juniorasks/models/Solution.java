@@ -3,7 +3,7 @@ package pl.js.juniorasks.models;
 import java.time.LocalDateTime;
 import java.util.Objects;
 
-public class Solution {
+public final class Solution {
 
     private final String solutionId;
     private final String menteeNick;
