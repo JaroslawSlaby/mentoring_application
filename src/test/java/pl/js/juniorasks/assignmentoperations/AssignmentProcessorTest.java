@@ -4,7 +4,7 @@ import org.junit.jupiter.api.Test;
 import pl.js.juniorasks.models.Mentee;
 import pl.js.juniorasks.models.Mentor;
 import pl.js.juniorasks.dataproviders.MenteeProvider;
-import pl.js.juniorasks.dataproviders.MentorProvider;
+import pl.js.juniorasks.dataproviders.mentors.MentorProvider;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;

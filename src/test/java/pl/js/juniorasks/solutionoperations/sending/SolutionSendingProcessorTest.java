@@ -1,7 +1,7 @@
 package pl.js.juniorasks.solutionoperations.sending;
 
 import org.junit.jupiter.api.Test;
-import pl.js.juniorasks.dataproviders.MentorProvider;
+import pl.js.juniorasks.dataproviders.mentors.MentorProvider;
 import pl.js.juniorasks.dataproviders.SolutionProvider;
 import pl.js.juniorasks.models.SolutionPrototype;
 import pl.js.juniorasks.models.Mentor;

@@ -1,7 +1,7 @@
 package pl.js.juniorasks.assignmentoperations;
 
 import pl.js.juniorasks.dataproviders.MenteeProvider;
-import pl.js.juniorasks.dataproviders.MentorProvider;
+import pl.js.juniorasks.dataproviders.mentors.MentorProvider;
 import pl.js.juniorasks.models.Mentee;
 import pl.js.juniorasks.models.Mentor;
 

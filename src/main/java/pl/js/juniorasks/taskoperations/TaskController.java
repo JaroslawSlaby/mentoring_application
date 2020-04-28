@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.RestController;
 import pl.js.juniorasks.models.Task;
 import pl.js.juniorasks.models.TaskPrototype;
 
-@RestController("/tasks.todo")
+@RestController("/tasks")
 public class TaskController {
 
     private final TaskService taskService;

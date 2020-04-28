@@ -1,51 +1,16 @@
 package pl.js.juniorasks.models;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Objects;
+import java.util.Set;
 
-public class User { //todo maybe it can be interface??
+public interface User {
 
-    protected final String nick;
-    protected final String email;
-    private final List<NotifyChannel> notifyChannels = new ArrayList<>();
+    String getNick();
 
-    public User(String nick, String email) {
-        this.nick = nick;
-        this.email = email;
-    }
+    String getEmail();
 
-    public String getNick() {
-        return nick;
-    }
+    Set<NotifyChannel> getNotifyChannels();
 
-    public String getEmail() {
-        return email;
-    }
+    void addNotifyChannel(NotifyChannel channel);
 
-    public List<NotifyChannel> getNotifyChannels() {
-        return notifyChannels;
-    }
-
-    public void addNotifyChannel(NotifyChannel channel) {
-        this.notifyChannels.add(channel);
-    }
-
-    public void removeNotifyChannel(NotifyChannel notifyChannel) {
-        this.notifyChannels.remove(notifyChannel);
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        User user = (User) o;
-        return Objects.equals(nick, user.nick) &&
-                Objects.equals(email, user.email);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(nick, email);
-    }
+    void removeNotifyChannel(NotifyChannel channel);
 }

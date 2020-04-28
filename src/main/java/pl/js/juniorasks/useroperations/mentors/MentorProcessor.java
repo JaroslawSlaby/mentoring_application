@@ -1,7 +1,7 @@
 package pl.js.juniorasks.useroperations.mentors;
 
 import pl.js.juniorasks.models.Mentor;
-import pl.js.juniorasks.dataproviders.MentorProvider;
+import pl.js.juniorasks.dataproviders.mentors.MentorProvider;
 import pl.js.juniorasks.models.NotifyChannel;
 
 public class MentorProcessor {

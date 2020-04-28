@@ -1,7 +1,6 @@
-package pl.js.juniorasks.dataproviders;
+package pl.js.juniorasks.dataproviders.mentors;
 
 import pl.js.juniorasks.models.Mentor;
-
 
 public interface MentorProvider {
 

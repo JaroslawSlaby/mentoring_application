@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 import pl.js.juniorasks.models.Mentor;
 
-@RestController("/mentors")
+@RestController()
 public class MentorController {
 
     private final MentorService mentorService;
@@ -19,18 +19,18 @@ public class MentorController {
         this.mentorService = mentorService;
     }
 
-    @GetMapping("/{mentorNick}")
+    @GetMapping("/mentors/{mentorNick}")
     ResponseEntity<Mentor> getMentor(@PathVariable String mentorNick) {
         return new ResponseEntity<>(mentorService.getMentor(mentorNick), HttpStatus.OK);
     }
 
-    @PostMapping("/{mentorNick}")
+    @PostMapping("/mentors/{mentorNick}")
     ResponseEntity<Mentor> addMentor(@PathVariable String mentorNick,
                                      @RequestBody String mentorEmail) {
         return new ResponseEntity<>(mentorService.addMentor(mentorNick, mentorEmail), HttpStatus.OK);
     }
 
-    @DeleteMapping("/{mentorNick}")
+    @DeleteMapping("/mentors/{mentorNick}")
     ResponseEntity<Mentor> removeMentor(@PathVariable String mentorNick) {
         return new ResponseEntity<>(mentorService.removeMentor(mentorNick), HttpStatus.OK);
     }
