@@ -6,7 +6,7 @@ import pl.js.juniorasks.models.Mentor;
 import pl.js.juniorasks.models.NotifyChannel;
 import pl.js.juniorasks.models.Solution;
 import pl.js.juniorasks.models.Task;
-import pl.js.juniorasks.usernotifiers.notifiers.TaskNotifier;
+import pl.js.juniorasks.usernotifiers.notifiers.Notifier;
 
 import java.time.LocalDateTime;
 import java.util.Map;
@@ -29,9 +29,9 @@ class NotifierManagerImplTest {
 
     @Test
     void okMenteeTest() {
-        Map<NotifyChannel, TaskNotifier> mapMock = mock(Map.class);
-        TaskNotifier taskNotifier = mock(TaskNotifier.class);
-        when(mapMock.get(NotifyChannel.MAIL)).thenReturn(taskNotifier);
+        Map<NotifyChannel, Notifier> mapMock = mock(Map.class);
+        Notifier notifier = mock(Notifier.class);
+        when(mapMock.get(NotifyChannel.MAIL)).thenReturn(notifier);
         Mentee mentee = new Mentee(MENTEE_NICK, MENTEE_MAIL);
         mentee.addNotifyChannel(NotifyChannel.MAIL);
         Task task = new Task(MENTEE_NICK, MENTOR_NICK, TASK_ID, TASK_CONTENT);
@@ -40,15 +40,15 @@ class NotifierManagerImplTest {
         manager.notifyUser(mentee, task);
 
         verify(mapMock).get(NotifyChannel.MAIL);
-        verify(taskNotifier).notify(mentee, task);
+        verify(notifier).notify(mentee, task);
     }
 
     @Test
     void okMenteeTwoChannelsTest() {
-        Map<NotifyChannel, TaskNotifier> mapMock = mock(Map.class);
-        TaskNotifier taskNotifier = mock(TaskNotifier.class);
-        when(mapMock.get(NotifyChannel.MAIL)).thenReturn(taskNotifier);
-        when(mapMock.get(NotifyChannel.SMS)).thenReturn(taskNotifier);
+        Map<NotifyChannel, Notifier> mapMock = mock(Map.class);
+        Notifier notifier = mock(Notifier.class);
+        when(mapMock.get(NotifyChannel.MAIL)).thenReturn(notifier);
+        when(mapMock.get(NotifyChannel.SMS)).thenReturn(notifier);
         Mentee mentee = new Mentee(MENTEE_NICK, MENTEE_MAIL);
         mentee.addNotifyChannel(NotifyChannel.MAIL);
         mentee.addNotifyChannel(NotifyChannel.SMS);
@@ -59,14 +59,14 @@ class NotifierManagerImplTest {
 
         verify(mapMock).get(NotifyChannel.MAIL);
         verify(mapMock).get(NotifyChannel.SMS);
-        verify(taskNotifier, times(2)).notify(mentee, task);
+        verify(notifier, times(2)).notify(mentee, task);
     }
 
     @Test
     void okMentorTest() {
-        Map<NotifyChannel, TaskNotifier> mapMock = mock(Map.class);
-        TaskNotifier taskNotifier = mock(TaskNotifier.class);
-        when(mapMock.get(NotifyChannel.MAIL)).thenReturn(taskNotifier);
+        Map<NotifyChannel, Notifier> mapMock = mock(Map.class);
+        Notifier notifier = mock(Notifier.class);
+        when(mapMock.get(NotifyChannel.MAIL)).thenReturn(notifier);
         Mentor mentor = new Mentor(MENTEE_NICK, MENTOR_MAIL);
         mentor.addNotifyChannel(NotifyChannel.MAIL);
         Solution solution = new Solution(SOLUTION_ID, MENTEE_NICK, TASK_ID, LocalDateTime.now(), SOLUTION_CONTENT);
@@ -75,15 +75,15 @@ class NotifierManagerImplTest {
         manager.notifyUser(mentor, solution);
 
         verify(mapMock).get(NotifyChannel.MAIL);
-        verify(taskNotifier).notify(mentor, solution);
+        verify(notifier).notify(mentor, solution);
     }
 
     @Test
     void okMentorTwoChannelsTest() {
-        Map<NotifyChannel, TaskNotifier> mapMock = mock(Map.class);
-        TaskNotifier taskNotifier = mock(TaskNotifier.class);
-        when(mapMock.get(NotifyChannel.MAIL)).thenReturn(taskNotifier);
-        when(mapMock.get(NotifyChannel.SMS)).thenReturn(taskNotifier);
+        Map<NotifyChannel, Notifier> mapMock = mock(Map.class);
+        Notifier notifier = mock(Notifier.class);
+        when(mapMock.get(NotifyChannel.MAIL)).thenReturn(notifier);
+        when(mapMock.get(NotifyChannel.SMS)).thenReturn(notifier);
         Mentor mentor = new Mentor(MENTEE_NICK, MENTOR_MAIL);
         mentor.addNotifyChannel(NotifyChannel.MAIL);
         mentor.addNotifyChannel(NotifyChannel.SMS);
@@ -94,6 +94,6 @@ class NotifierManagerImplTest {
 
         verify(mapMock).get(NotifyChannel.MAIL);
         verify(mapMock).get(NotifyChannel.SMS);
-        verify(taskNotifier, times(2)).notify(mentor, solution);
+        verify(notifier, times(2)).notify(mentor, solution);
     }
 }

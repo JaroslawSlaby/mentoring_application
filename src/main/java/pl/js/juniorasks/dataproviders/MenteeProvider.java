@@ -8,6 +8,6 @@ public interface MenteeProvider {
 
     void addMentee(Mentee mentee);
 
-    void removeMentee(Mentee mentee);
+    Mentee removeMentee(String menteeNick);
 
 }

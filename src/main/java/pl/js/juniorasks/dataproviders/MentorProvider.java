@@ -11,6 +11,6 @@ public interface MentorProvider {
 
     void addMentor(Mentor mentor);
 
-    void removeMentor(Mentor mentor);
+    Mentor removeMentor(String mentorNick);
 
 }

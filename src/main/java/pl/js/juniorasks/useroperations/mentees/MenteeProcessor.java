@@ -24,8 +24,6 @@ public class MenteeProcessor {
     }
 
     public Mentee removeMentee(String menteeNick) {
-        Mentee mentee = menteeProvider.getMentee(menteeNick);
-        menteeProvider.removeMentee(mentee);
-        return mentee;
+        return menteeProvider.removeMentee(menteeNick);
     }
 }

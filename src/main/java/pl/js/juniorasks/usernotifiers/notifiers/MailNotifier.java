@@ -2,7 +2,7 @@ package pl.js.juniorasks.usernotifiers.notifiers;
 
 import pl.js.juniorasks.models.User;
 
-public class MailNotifier implements TaskNotifier {
+public class MailNotifier implements Notifier {
 
     @Override
     public void notify(User user, Object notification) {

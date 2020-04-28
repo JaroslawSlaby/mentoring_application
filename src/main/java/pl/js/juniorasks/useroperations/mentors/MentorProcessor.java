@@ -24,8 +24,6 @@ public class MentorProcessor {
     }
 
     public Mentor removeMentor(String mentorNick) {
-        Mentor mentor = mentorProvider.getMentor(mentorNick);
-        mentorProvider.removeMentor(mentor);
-        return mentor;
+        return mentorProvider.removeMentor(mentorNick);
     }
 }

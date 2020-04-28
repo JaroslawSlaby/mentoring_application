@@ -1,0 +1,17 @@
+WSZYSTKO BEZ WARSTWY DATA ACCESS - istnieją tylko interfejsy graniczne
+
+dodawanie mentora - done
+dodawanie mentee - done
+usuwanie mentee - done
+przypisywanie mentee do mentora - done
+usuwanie mentee od mentora - done
+dodawanie wpisu do bloga przez mentora - done
+subskrypcja mentee - done
+rezygnacja z subskrypcji - done
+tworzenie zadania przez mentora dla mentee - done
+wysylanie rozwiązania przez mentee - done
+otrzymywanie notyfikacji przez mentora i mentee - done
+ocenianie rozwiązania przez mentora - done (rozwazyc klase Rate jako tabelke obca)
+
+
+
