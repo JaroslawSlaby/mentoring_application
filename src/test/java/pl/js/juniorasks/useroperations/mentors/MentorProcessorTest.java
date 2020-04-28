@@ -45,18 +45,18 @@ class MentorProcessorTest {
 
     @Test
     void removeMentorOkTest() {
+        Mentor mentor = new Mentor(MENTOR_NICK, MENTOR_MAIL);
         MentorProvider mentorProvider = mock(MentorProvider.class);
         MentorProcessor processor = new MentorProcessor(mentorProvider);
         doNothing().when(mentorProvider).addMentor(any());
-        doNothing().when(mentorProvider).removeMentor(any());
+        when(mentorProvider.removeMentor(MENTOR_NICK)).thenReturn(mentor);
         when(mentorProvider.getMentor(MENTOR_NICK)).thenReturn(new Mentor(MENTOR_NICK, MENTOR_MAIL));
         processor.addMentor(MENTOR_NICK, MENTOR_MAIL);
 
-        Mentor mentor = processor.removeMentor(MENTOR_NICK);
+        Mentor returnedMentor = processor.removeMentor(MENTOR_NICK);
 
-        assertEquals(MENTOR_NICK, mentor.getNick());
-        assertEquals(MENTOR_MAIL, mentor.getEmail());
-        verify(mentorProvider).addMentor(mentor);
-        verify(mentorProvider).removeMentor(mentor);
+        assertEquals(mentor, returnedMentor);
+        verify(mentorProvider).addMentor(returnedMentor);
+        verify(mentorProvider).removeMentor(MENTOR_NICK);
     }
 }

@@ -43,17 +43,18 @@ class MenteeProcessorTest {
 
     @Test
     void removeMenteeOkTest() {
+        Mentee mentee = new Mentee(MENTEE_NICK, MENTEE_MAIL);
         MenteeProvider menteeProvider = mock(MenteeProvider.class);
         MenteeProcessor processor = new MenteeProcessor(menteeProvider);
         doNothing().when(menteeProvider).addMentee(any());
-        doNothing().when(menteeProvider).removeMentee(any());
+        when(menteeProvider.removeMentee(MENTEE_NICK)).thenReturn(mentee);
         when(menteeProvider.getMentee(MENTEE_NICK)).thenReturn(new Mentee(MENTEE_NICK, MENTEE_MAIL));
         processor.addMentee(MENTEE_NICK, MENTEE_MAIL);
 
-        Mentee mentee = processor.removeMentee(MENTEE_NICK);
+        Mentee returnedMentee = processor.removeMentee(MENTEE_NICK);
 
-        assertEquals(MENTEE_NICK, mentee.getNick());
-        verify(menteeProvider).addMentee(mentee);
-        verify(menteeProvider).removeMentee(mentee);
+        assertEquals(mentee, returnedMentee);
+        verify(menteeProvider).addMentee(returnedMentee);
+        verify(menteeProvider).removeMentee(MENTEE_NICK);
     }
 }
