@@ -5,6 +5,7 @@ import org.springframework.data.mongodb.core.mapping.Document;
 import pl.js.juniorasks.models.Mentee;
 import pl.js.juniorasks.models.NotifyChannel;
 
+import java.util.EnumSet;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -14,7 +15,7 @@ public class MentorDAO {
     @Id
     private String nick;
     private String email;
-    private Set<NotifyChannel> notifyChannels = new HashSet<>();
+    private Set<NotifyChannel> notifyChannels = EnumSet.of(NotifyChannel.MAIL);
     private Set<Mentee> assignedMentees = new HashSet<>();
 
     public MentorDAO() {

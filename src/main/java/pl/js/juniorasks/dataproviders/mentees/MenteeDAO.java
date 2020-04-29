@@ -3,7 +3,7 @@ package pl.js.juniorasks.dataproviders.mentees;
 import org.springframework.data.annotation.Id;
 import pl.js.juniorasks.models.NotifyChannel;
 
-import java.util.HashSet;
+import java.util.EnumSet;
 import java.util.Set;
 
 public class MenteeDAO {
@@ -11,7 +11,7 @@ public class MenteeDAO {
     @Id
     private String nick;
     private String email;
-    private Set<NotifyChannel> notifyChannels = new HashSet<>();
+    private Set<NotifyChannel> notifyChannels = EnumSet.of(NotifyChannel.MAIL);
 
     public MenteeDAO() {
     }

@@ -18,7 +18,6 @@ public class MenteeProcessor {
 
     public Mentee addMentee(String menteeNick, String email) {
         Mentee mentee = new Mentee(menteeNick, email);
-        mentee.addNotifyChannel(NotifyChannel.MAIL);
         menteeProvider.saveMentee(mentee);
         return mentee;
     }

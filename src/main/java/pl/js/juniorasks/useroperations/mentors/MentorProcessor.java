@@ -1,8 +1,7 @@
 package pl.js.juniorasks.useroperations.mentors;
 
-import pl.js.juniorasks.models.Mentor;
 import pl.js.juniorasks.dataproviders.mentors.MentorProvider;
-import pl.js.juniorasks.models.NotifyChannel;
+import pl.js.juniorasks.models.Mentor;
 
 public class MentorProcessor {
 
@@ -18,7 +17,6 @@ public class MentorProcessor {
 
     public Mentor addMentor(String mentorNick, String email) {
         Mentor mentor = new Mentor(mentorNick, email);
-        mentor.addNotifyChannel(NotifyChannel.MAIL);
         mentorProvider.saveMentor(mentor);
         return mentor;
     }

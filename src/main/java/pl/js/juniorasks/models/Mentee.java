@@ -1,5 +1,6 @@
 package pl.js.juniorasks.models;
 
+import java.util.EnumSet;
 import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
@@ -8,7 +9,7 @@ public final class Mentee implements User {
 
     private String nick;
     private String email;
-    private Set<NotifyChannel> notifyChannels = new HashSet<>();
+    private Set<NotifyChannel> notifyChannels = EnumSet.of(NotifyChannel.MAIL);
 
     public Mentee() {
     }
