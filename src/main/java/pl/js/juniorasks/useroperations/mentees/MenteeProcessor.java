@@ -1,8 +1,7 @@
 package pl.js.juniorasks.useroperations.mentees;
 
-import pl.js.juniorasks.models.Mentee;
 import pl.js.juniorasks.dataproviders.mentees.MenteeProvider;
-import pl.js.juniorasks.models.NotifyChannel;
+import pl.js.juniorasks.models.Mentee;
 
 public class MenteeProcessor {
 
