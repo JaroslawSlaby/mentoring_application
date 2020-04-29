@@ -10,7 +10,7 @@ public final class Mentor implements User {
     private String nick;
     private String email;
     private Set<NotifyChannel> notifyChannels = EnumSet.of(NotifyChannel.MAIL);
-    private Set<Mentee> assignedMentees = new HashSet<>();
+    private Set<String> assignedMentees = new HashSet<>();
 
     public Mentor() {
     }
@@ -20,12 +20,12 @@ public final class Mentor implements User {
         this.email = email;
     }
 
-    public void assignMentee(Mentee mentee) {
-        this.assignedMentees.add(mentee);
+    public void assignMentee(String menteeNick) {
+        this.assignedMentees.add(menteeNick);
     }
 
-    public void removeMentee(Mentee mentee) {
-        this.assignedMentees.remove(mentee);
+    public void removeMentee(String menteeNick) {
+        this.assignedMentees.remove(menteeNick);
     }
 
     public boolean hasMentees() {

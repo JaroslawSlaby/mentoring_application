@@ -35,4 +35,9 @@ public class MenteeProviderImpl implements MenteeProvider {
         menteeRepository.delete(menteeDAO);
         return modelMapper.map(menteeDAO, Mentee.class);
     }
+
+    @Override
+    public Boolean exists(String menteeNick) {
+        return menteeRepository.existsById(menteeNick);
+    }
 }

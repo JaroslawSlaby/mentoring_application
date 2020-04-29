@@ -17,18 +17,22 @@ public class AssignmentProcessor {
 
     public Mentor assignMenteeToMentor(String mentorNick, String menteeNick) {
         Mentor mentor = mentorProvider.getMentor(mentorNick);
-        Mentee mentee = menteeProvider.getMentee(menteeNick);
-        mentor.assignMentee(mentee);
-        mentorProvider.saveMentor(mentor);
-        return mentor;
+        if (menteeProvider.exists(menteeNick)) {
+            mentor.assignMentee(menteeNick);
+            mentorProvider.saveMentor(mentor);
+            return mentor;
+        }
+        throw new RuntimeException(); //todo no such mentee
     }
 
     public Mentor removeMenteeFromMentor(String mentorNick, String menteeNick) {
         Mentor mentor = mentorProvider.getMentor(mentorNick);
-        Mentee mentee = menteeProvider.getMentee(menteeNick);
-        mentor.removeMentee(mentee);
-        mentorProvider.saveMentor(mentor);
-        return mentor;
+        if (menteeProvider.exists(menteeNick)) {
+            mentor.removeMentee(menteeNick);
+            mentorProvider.saveMentor(mentor);
+            return mentor;
+        }
+        throw new RuntimeException(); //todo no such mentee
     }
 
 }

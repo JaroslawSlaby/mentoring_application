@@ -1,10 +1,9 @@
 package pl.js.juniorasks.assignmentoperations;
 
 import org.junit.jupiter.api.Test;
-import pl.js.juniorasks.models.Mentee;
-import pl.js.juniorasks.models.Mentor;
 import pl.js.juniorasks.dataproviders.mentees.MenteeProvider;
 import pl.js.juniorasks.dataproviders.mentors.MentorProvider;
+import pl.js.juniorasks.models.Mentor;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
@@ -24,7 +23,7 @@ public class AssignmentProcessorTest {
         MentorProvider mentorProvider = mock(MentorProvider.class);
         when(mentorProvider.getMentor(MENTOR_NICK)).thenReturn(createMentor());
         MenteeProvider menteeProvider = mock(MenteeProvider.class);
-        when(menteeProvider.getMentee(MENTEE_NICK_1)).thenReturn(createMentee(MENTEE_NICK_1));
+        when(menteeProvider.exists(MENTEE_NICK_1)).thenReturn(true);
         AssignmentProcessor processor = new AssignmentProcessor(mentorProvider, menteeProvider);
 
         Mentor mentor = processor.assignMenteeToMentor(MENTOR_NICK, MENTEE_NICK_1);
@@ -40,7 +39,7 @@ public class AssignmentProcessorTest {
         MentorProvider mentorProvider = mock(MentorProvider.class);
         when(mentorProvider.getMentor(MENTOR_NICK)).thenReturn(createMentor());
         MenteeProvider menteeProvider = mock(MenteeProvider.class);
-        when(menteeProvider.getMentee(MENTEE_NICK_1)).thenReturn(createMentee(MENTEE_NICK_1));
+        when(menteeProvider.exists(MENTEE_NICK_1)).thenReturn(true);
         AssignmentProcessor processor = new AssignmentProcessor(mentorProvider, menteeProvider);
 
         processor.assignMenteeToMentor(MENTOR_NICK, MENTEE_NICK_1);
@@ -57,8 +56,8 @@ public class AssignmentProcessorTest {
         MentorProvider mentorProvider = mock(MentorProvider.class);
         when(mentorProvider.getMentor(MENTOR_NICK)).thenReturn(createMentor());
         MenteeProvider menteeProvider = mock(MenteeProvider.class);
-        when(menteeProvider.getMentee(MENTEE_NICK_1)).thenReturn(createMentee(MENTEE_NICK_1));
-        when(menteeProvider.getMentee(MENTEE_NICK_2)).thenReturn(createMentee(MENTEE_NICK_2));
+        when(menteeProvider.exists(MENTEE_NICK_1)).thenReturn(true);
+        when(menteeProvider.exists(MENTEE_NICK_2)).thenReturn(true);
         AssignmentProcessor processor = new AssignmentProcessor(mentorProvider, menteeProvider);
 
         processor.assignMenteeToMentor(MENTOR_NICK, MENTEE_NICK_1);
@@ -75,12 +74,15 @@ public class AssignmentProcessorTest {
         MentorProvider mentorProvider = mock(MentorProvider.class);
         when(mentorProvider.getMentor(MENTOR_NICK)).thenReturn(createMentor());
         MenteeProvider menteeProvider = mock(MenteeProvider.class);
-        when(menteeProvider.getMentee(MENTEE_NICK_1)).thenReturn(null);
+        when(menteeProvider.exists(MENTEE_NICK_1)).thenReturn(false);
         AssignmentProcessor processor = new AssignmentProcessor(mentorProvider, menteeProvider);
 
-        Mentor mentor = processor.assignMenteeToMentor(MENTOR_NICK, MENTEE_NICK_1);
+        assertThrows(RuntimeException.class,
+                () -> {
+                    Mentor mentor = processor.assignMenteeToMentor(MENTOR_NICK, MENTEE_NICK_1);
+                    assertEquals(0, mentor.getNumberOfMentees());
+                });
 
-        assertEquals(1, mentor.getNumberOfMentees());
     }
 
     @Test
@@ -88,7 +90,7 @@ public class AssignmentProcessorTest {
         MentorProvider mentorProvider = mock(MentorProvider.class);
         when(mentorProvider.getMentor(MENTOR_NICK)).thenReturn(null);
         MenteeProvider menteeProvider = mock(MenteeProvider.class);
-        when(menteeProvider.getMentee(MENTEE_NICK_1)).thenReturn(createMentee(MENTEE_NICK_1));
+        when(menteeProvider.exists(MENTEE_NICK_1)).thenReturn(true);
         AssignmentProcessor processor = new AssignmentProcessor(mentorProvider, menteeProvider);
 
         assertThrows(NullPointerException.class,
@@ -97,11 +99,11 @@ public class AssignmentProcessorTest {
     }
 
     @Test
-    void removeMenteeTest() {
+    void removeExistingMenteeTest() {
         MentorProvider mentorProvider = mock(MentorProvider.class);
         when(mentorProvider.getMentor(MENTOR_NICK)).thenReturn(createMentor());
         MenteeProvider menteeProvider = mock(MenteeProvider.class);
-        when(menteeProvider.getMentee(MENTEE_NICK_1)).thenReturn(createMentee(MENTEE_NICK_1));
+        when(menteeProvider.exists(MENTEE_NICK_1)).thenReturn(true);
         AssignmentProcessor processor = new AssignmentProcessor(mentorProvider, menteeProvider);
         processor.assignMenteeToMentor(MENTOR_NICK, MENTEE_NICK_1);
 
@@ -113,11 +115,25 @@ public class AssignmentProcessorTest {
         assertEquals(0, numberOfMentees);
     }
 
-    private Mentor createMentor() {
-        return new Mentor(MENTOR_NICK, "mail");
+    @Test
+    void removeNonExistingMenteeTest() {
+        MentorProvider mentorProvider = mock(MentorProvider.class);
+        when(mentorProvider.getMentor(MENTOR_NICK)).thenReturn(createMentor());
+        MenteeProvider menteeProvider = mock(MenteeProvider.class);
+        when(menteeProvider.exists(MENTEE_NICK_1)).thenReturn(false);
+        AssignmentProcessor processor = new AssignmentProcessor(mentorProvider, menteeProvider);
+
+        assertThrows(RuntimeException.class,
+                () -> {
+                    Mentor mentor = processor.removeMenteeFromMentor(MENTOR_NICK, MENTEE_NICK_1);
+                    boolean hasMentees = mentor.hasMentees();
+                    int numberOfMentees = mentor.getNumberOfMentees();
+                    assertFalse(hasMentees);
+                    assertEquals(0, numberOfMentees);
+                });
     }
 
-    private Mentee createMentee(String nick) {
-        return new Mentee(nick, "mail");
+    private Mentor createMentor() {
+        return new Mentor(MENTOR_NICK, "mail");
     }
 }

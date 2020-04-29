@@ -18,7 +18,7 @@ public class MentorProviderImpl implements MentorProvider {
     @Override
     public Mentor getMentor(String mentorNick) {
         Optional<MentorDAO> mentorOptional = mentorRepository.findById(mentorNick);
-        MentorDAO mentorDAO = mentorOptional.orElseThrow();
+        MentorDAO mentorDAO = mentorOptional.orElseThrow(); //todo no such mentor
         return modelMapper.map(mentorDAO, Mentor.class);
     }
 

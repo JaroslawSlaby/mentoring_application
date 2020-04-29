@@ -9,7 +9,9 @@ import java.util.NoSuchElementException;
 import java.util.Optional;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.verify;
@@ -83,6 +85,26 @@ class MenteeProviderImplTest {
         MenteeProvider menteeProvider = new MenteeProviderImpl(menteeRepository, mapper);
 
         assertThrows(NoSuchElementException.class, () -> menteeProvider.removeMentee(MENTEE_NICK));
+    }
+
+    @Test
+    void existsMenteeTest() {
+        MenteeRepository menteeRepository = mock(MenteeRepository.class);
+        when(menteeRepository.existsById(MENTEE_NICK)).thenReturn(true);
+        ModelMapper mapper = createModelMapper();
+        MenteeProvider menteeProvider = new MenteeProviderImpl(menteeRepository, mapper);
+
+        assertTrue(menteeProvider.exists(MENTEE_NICK));
+    }
+
+    @Test
+    void notExistsMenteeTest() {
+        MenteeRepository menteeRepository = mock(MenteeRepository.class);
+        when(menteeRepository.existsById(MENTEE_NICK)).thenReturn(false);
+        ModelMapper mapper = createModelMapper();
+        MenteeProvider menteeProvider = new MenteeProviderImpl(menteeRepository, mapper);
+
+        assertFalse(menteeProvider.exists(MENTEE_NICK));
     }
 
 

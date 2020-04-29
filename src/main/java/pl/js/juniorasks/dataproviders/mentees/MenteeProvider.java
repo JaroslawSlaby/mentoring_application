@@ -10,4 +10,5 @@ public interface MenteeProvider {
 
     Mentee removeMentee(String menteeNick);
 
+    Boolean exists(String menteeNick);
 }
