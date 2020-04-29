@@ -2,7 +2,6 @@ package pl.js.juniorasks.dataproviders.mentors;
 
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
-import pl.js.juniorasks.models.Mentee;
 import pl.js.juniorasks.models.NotifyChannel;
 
 import java.util.EnumSet;
@@ -16,7 +15,7 @@ public class MentorDAO {
     private String nick;
     private String email;
     private Set<NotifyChannel> notifyChannels = EnumSet.of(NotifyChannel.MAIL);
-    private Set<Mentee> assignedMentees = new HashSet<>();
+    private Set<String> assignedMentees = new HashSet<>();
 
     public MentorDAO() {
     }
@@ -38,7 +37,7 @@ public class MentorDAO {
         return notifyChannels;
     }
 
-    public Set<Mentee> getAssignedMentees() {
+    public Set<String> getAssignedMentees() {
         return assignedMentees;
     }
 }

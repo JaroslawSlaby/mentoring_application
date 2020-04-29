@@ -1,11 +1,13 @@
 package pl.js.juniorasks.dataproviders.mentees;
 
 import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.mapping.Document;
 import pl.js.juniorasks.models.NotifyChannel;
 
 import java.util.EnumSet;
 import java.util.Set;
 
+@Document(collection = "mentees")
 public class MenteeDAO {
 
     @Id
