@@ -57,7 +57,6 @@ public class Config {
         return new AssignmentProcessor(mentorProvider, menteeProvider);
     }
 
-
     @Bean
     public Docket api() {
         return new Docket(DocumentationType.SWAGGER_2)

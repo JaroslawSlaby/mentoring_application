@@ -3,7 +3,7 @@ package pl.js.juniorasks.models;
 import java.time.LocalDateTime;
 import java.util.Objects;
 
-public final class Solution {
+public final class Solution implements Notification {
 
     private final String solutionId;
     private final String menteeNick;
@@ -57,5 +57,10 @@ public final class Solution {
     @Override
     public int hashCode() {
         return Objects.hash(solutionId, menteeNick, taskId, solutionContent);
+    }
+
+    @Override
+    public String getHTMLRepresentation() {
+        return null; //todo: implement
     }
 }

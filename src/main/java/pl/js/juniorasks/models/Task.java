@@ -2,7 +2,7 @@ package pl.js.juniorasks.models;
 
 import java.util.Objects;
 
-public final class Task {
+public final class Task implements Notification {
 
     private final String menteeNick;
     private final String mentorNick;
@@ -48,4 +48,11 @@ public final class Task {
         return Objects.hash(menteeNick, mentorNick, id, content);
     }
 
+    @Override
+    public String getHTMLRepresentation() {
+        return "<h3> New task for " + menteeNick + "</h3>\n" +
+                "<h5> Author: " + mentorNick + "</h5>\n\n" +
+                "<p>" + content + "</p>\n" +
+                "<h5>Good luck!</h5>";
+    }
 }
