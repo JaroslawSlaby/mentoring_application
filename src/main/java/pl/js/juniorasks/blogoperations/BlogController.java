@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.RestController;
 import pl.js.juniorasks.models.PostPrototype;
 import pl.js.juniorasks.models.Post;
 
-@RestController("/blog")
+//@RestController("/blog")
 public class BlogController {
 
     private final BlogService blogService;

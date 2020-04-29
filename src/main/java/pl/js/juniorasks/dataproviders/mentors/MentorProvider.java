@@ -6,9 +6,7 @@ public interface MentorProvider {
 
     Mentor getMentor(String mentorNick);
 
-    Mentor getMentorBasedOnTaskId(String taskId);
-
-    void addMentor(Mentor mentor);
+    void saveMentor(Mentor mentor);
 
     Mentor removeMentor(String mentorNick);
 

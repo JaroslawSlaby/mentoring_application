@@ -19,7 +19,7 @@ public class MentorProcessor {
     public Mentor addMentor(String mentorNick, String email) {
         Mentor mentor = new Mentor(mentorNick, email);
         mentor.addNotifyChannel(NotifyChannel.MAIL);
-        mentorProvider.addMentor(mentor);
+        mentorProvider.saveMentor(mentor);
         return mentor;
     }
 

@@ -1,7 +1,7 @@
 package pl.js.juniorasks.solutionoperations.rating;
 
 import org.junit.jupiter.api.Test;
-import pl.js.juniorasks.dataproviders.MenteeProvider;
+import pl.js.juniorasks.dataproviders.mentees.MenteeProvider;
 import pl.js.juniorasks.dataproviders.SolutionProvider;
 import pl.js.juniorasks.dataproviders.TaskProvider;
 import pl.js.juniorasks.models.Mentee;

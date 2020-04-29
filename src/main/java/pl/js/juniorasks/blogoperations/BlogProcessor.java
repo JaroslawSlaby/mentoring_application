@@ -1,7 +1,7 @@
 package pl.js.juniorasks.blogoperations;
 
 import pl.js.juniorasks.dataproviders.BlogWallProvider;
-import pl.js.juniorasks.dataproviders.MenteeProvider;
+import pl.js.juniorasks.dataproviders.mentees.MenteeProvider;
 import pl.js.juniorasks.models.BlogWall;
 import pl.js.juniorasks.models.Mentee;
 import pl.js.juniorasks.models.Post;

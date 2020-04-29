@@ -7,7 +7,7 @@ import pl.js.juniorasks.models.TaskPrototype;
 import static pl.js.juniorasks.tools.InputValidator.validateObjectValue;
 import static pl.js.juniorasks.tools.InputValidator.validateStringValue;
 
-@Service
+//@Service
 public class TaskService {
 
     private final TaskProcessor taskProcessor;

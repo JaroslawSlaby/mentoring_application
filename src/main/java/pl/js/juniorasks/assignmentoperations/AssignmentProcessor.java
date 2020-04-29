@@ -1,6 +1,6 @@
 package pl.js.juniorasks.assignmentoperations;
 
-import pl.js.juniorasks.dataproviders.MenteeProvider;
+import pl.js.juniorasks.dataproviders.mentees.MenteeProvider;
 import pl.js.juniorasks.dataproviders.mentors.MentorProvider;
 import pl.js.juniorasks.models.Mentee;
 import pl.js.juniorasks.models.Mentor;
@@ -19,6 +19,7 @@ public class AssignmentProcessor {
         Mentor mentor = mentorProvider.getMentor(mentorNick);
         Mentee mentee = menteeProvider.getMentee(menteeNick);
         mentor.assignMentee(mentee);
+        mentorProvider.saveMentor(mentor);
         return mentor;
     }
 
@@ -26,6 +27,7 @@ public class AssignmentProcessor {
         Mentor mentor = mentorProvider.getMentor(mentorNick);
         Mentee mentee = menteeProvider.getMentee(menteeNick);
         mentor.removeMentee(mentee);
+        mentorProvider.saveMentor(mentor);
         return mentor;
     }
 

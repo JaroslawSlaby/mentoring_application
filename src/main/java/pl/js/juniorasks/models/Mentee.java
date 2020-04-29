@@ -8,9 +8,10 @@ public final class Mentee implements User {
 
     private String nick;
     private String email;
-    private final Set<NotifyChannel> notifyChannels = new HashSet<>();
+    private Set<NotifyChannel> notifyChannels = new HashSet<>();
 
-
+    public Mentee() {
+    }
 
     public Mentee(String nick, String email) {
         this.nick = nick;

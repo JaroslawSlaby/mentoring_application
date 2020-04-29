@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 import pl.js.juniorasks.models.Mentor;
 
-@RestController()
+@RestController
 public class MentorController {
 
     private final MentorService mentorService;

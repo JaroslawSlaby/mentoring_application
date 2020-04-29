@@ -1,4 +1,4 @@
-package pl.js.juniorasks.dataproviders;
+package pl.js.juniorasks.dataproviders.mentees;
 
 import pl.js.juniorasks.models.Mentee;
 
@@ -6,7 +6,7 @@ public interface MenteeProvider {
 
     Mentee getMentee(String menteeNick);
 
-    void addMentee(Mentee mentee);
+    void saveMentee(Mentee mentee);
 
     Mentee removeMentee(String menteeNick);
 

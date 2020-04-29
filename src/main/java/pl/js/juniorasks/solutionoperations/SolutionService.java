@@ -10,7 +10,7 @@ import pl.js.juniorasks.solutionoperations.sending.SolutionSendingProcessor;
 import static pl.js.juniorasks.tools.InputValidator.validateObjectValue;
 import static pl.js.juniorasks.tools.InputValidator.validateStringValue;
 
-@Service
+//@Service
 public class SolutionService {
 
     private final SolutionProcessor solutionProcessor;

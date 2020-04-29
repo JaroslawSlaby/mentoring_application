@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 import pl.js.juniorasks.models.Mentee;
 
-@RestController("/mentees")
+@RestController
 public class MenteeController {
 
     private final MenteeService menteeService;
@@ -19,17 +19,17 @@ public class MenteeController {
         this.menteeService = menteeService;
     }
 
-    @GetMapping("/{menteeNick}")
+    @GetMapping("/mentees/{menteeNick}")
     ResponseEntity<Mentee> getMentee(@PathVariable String menteeNick) {
         return new ResponseEntity<>(menteeService.getMentee(menteeNick), HttpStatus.OK);
     }
 
-    @PostMapping("/{menteeNick}")
+    @PostMapping("/mentees/{menteeNick}")
     ResponseEntity<Mentee> addMentee(@PathVariable String menteeNick, @RequestBody String email) {
         return new ResponseEntity<>(menteeService.addMentee(menteeNick, email), HttpStatus.OK);
     }
 
-    @DeleteMapping("/{menteeNick}")
+    @DeleteMapping("/mentees/{menteeNick}")
     ResponseEntity<Mentee> deleteMentee(@PathVariable String menteeNick) {
         return new ResponseEntity<>(menteeService.removeMentee(menteeNick), HttpStatus.OK);
     }

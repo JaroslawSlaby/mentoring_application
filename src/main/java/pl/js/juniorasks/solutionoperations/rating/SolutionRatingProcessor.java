@@ -1,6 +1,6 @@
 package pl.js.juniorasks.solutionoperations.rating;
 
-import pl.js.juniorasks.dataproviders.MenteeProvider;
+import pl.js.juniorasks.dataproviders.mentees.MenteeProvider;
 import pl.js.juniorasks.dataproviders.SolutionProvider;
 import pl.js.juniorasks.models.Mentee;
 import pl.js.juniorasks.models.Rate;

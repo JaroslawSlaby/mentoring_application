@@ -11,7 +11,7 @@ import pl.js.juniorasks.models.SolutionPrototype;
 import pl.js.juniorasks.models.Rate;
 import pl.js.juniorasks.models.Solution;
 
-@RestController("/solutions")
+//@RestController("/solutions")
 public class SolutionController {
     //todo: consider splitting into two separate controllers - one for sending and the other for rating
     private final SolutionService solutionService;

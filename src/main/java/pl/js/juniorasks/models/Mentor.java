@@ -6,10 +6,13 @@ import java.util.Set;
 
 public class Mentor implements User {
 
-    private final String nick;
-    private final String email;
-    private final Set<NotifyChannel> notifyChannels = new HashSet<>();
-    private final Set<Mentee> assignedMentees = new HashSet<>();
+    private String nick;
+    private String email;
+    private Set<NotifyChannel> notifyChannels = new HashSet<>();
+    private Set<Mentee> assignedMentees = new HashSet<>();
+
+    public Mentor() {
+    }
 
     public Mentor(String nick, String email) {
         this.nick = nick;

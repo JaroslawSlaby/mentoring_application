@@ -8,7 +8,7 @@ import pl.js.juniorasks.tools.InputValidator;
 import static pl.js.juniorasks.tools.InputValidator.validateObjectValue;
 import static pl.js.juniorasks.tools.InputValidator.validateStringValue;
 
-@Service
+//@Service
 public class BlogService {
 
     private final BlogProcessor blogProcessor;

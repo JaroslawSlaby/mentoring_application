@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RestController;
 import pl.js.juniorasks.models.Mentor;
 
-@RestController("/assign")
+@RestController
 public class AssignmentController {
 
     private final AssignmentService assignmentService;
@@ -17,12 +17,12 @@ public class AssignmentController {
         this.assignmentService = assignmentService;
     }
 
-    @PostMapping("/{mentorNick}/mentee/{menteeNick}")
+    @PostMapping("/assign/{mentorNick}/mentee/{menteeNick}")
     ResponseEntity<Mentor> assignMentee(@PathVariable String mentorNick, @PathVariable String menteeNick) {
         return new ResponseEntity<>(assignmentService.assignMentee(mentorNick, menteeNick), HttpStatus.OK);
     }
 
-    @DeleteMapping("/{mentorNick}/mentee/{menteeNick}")
+    @DeleteMapping("/assign/{mentorNick}/mentee/{menteeNick}")
     ResponseEntity<Mentor> removeMentee(@PathVariable String mentorNick, @PathVariable String menteeNick) {
         return new ResponseEntity<>(assignmentService.removeMentee(mentorNick, menteeNick), HttpStatus.OK);
     }

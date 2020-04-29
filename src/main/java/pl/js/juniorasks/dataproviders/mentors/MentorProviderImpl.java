@@ -23,12 +23,7 @@ public class MentorProviderImpl implements MentorProvider {
     }
 
     @Override
-    public Mentor getMentorBasedOnTaskId(String taskId) {
-        return null;
-    }
-
-    @Override
-    public void addMentor(Mentor mentor) {
+    public void saveMentor(Mentor mentor) {
         MentorDAO mentorDAO = modelMapper.map(mentor, MentorDAO.class);
         mentorRepository.save(mentorDAO);
     }
@@ -40,6 +35,4 @@ public class MentorProviderImpl implements MentorProvider {
         mentorRepository.delete(mentorDAO);
         return modelMapper.map(mentorDAO, Mentor.class);
     }
-
 }
-

@@ -1,6 +1,7 @@
 package pl.js.juniorasks.solutionoperations.sending;
 
 import org.junit.jupiter.api.Test;
+import pl.js.juniorasks.dataproviders.TaskProvider;
 import pl.js.juniorasks.dataproviders.mentors.MentorProvider;
 import pl.js.juniorasks.dataproviders.SolutionProvider;
 import pl.js.juniorasks.models.SolutionPrototype;
@@ -27,13 +28,15 @@ class SolutionSendingProcessorTest {
         SolutionPrototype solutionPrototype = new SolutionPrototype(MENTEE_NICK, TASK_ID, SOLUTION_CONTENT);
         MentorProvider mentorProvider = mock(MentorProvider.class);
         Mentor mentor = new Mentor(MENTOR_NICK, "TestMentorMail");
-        when(mentorProvider.getMentorBasedOnTaskId(TASK_ID)).thenReturn(mentor);
+        when(mentorProvider.getMentor(MENTOR_NICK)).thenReturn(mentor);
+        TaskProvider taskProvider = mock(TaskProvider.class);
+        when(taskProvider.getMentorNickBasedOnTaskId(TASK_ID)).thenReturn(MENTOR_NICK);
         SolutionProvider solutionProvider = mock(SolutionProvider.class);
         doNothing().when(solutionProvider).addSolution(any());
         NotifierManager notifierManager = mock(NotifierManager.class);
         doNothing().when(notifierManager).notifyUser(any(), any());
         SolutionSendingProcessor processor = new SolutionSendingProcessor(
-                mentorProvider, solutionProvider, notifierManager);
+                mentorProvider, taskProvider, solutionProvider, notifierManager);
 
         Solution solution = processor.sendSolution(solutionPrototype);
 
@@ -41,7 +44,8 @@ class SolutionSendingProcessorTest {
         assertEquals(SOLUTION_CONTENT, solution.getSolutionContent());
         assertEquals(TASK_ID, solution.getTaskId());
 
-        verify(mentorProvider).getMentorBasedOnTaskId(TASK_ID);
+        verify(taskProvider).getMentorNickBasedOnTaskId(TASK_ID);
+        verify(mentorProvider).getMentor(MENTOR_NICK);
         verify(solutionProvider).addSolution(solution);
         verify(notifierManager).notifyUser(mentor, solution);
     }
