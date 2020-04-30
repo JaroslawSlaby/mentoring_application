@@ -1,6 +1,6 @@
 package pl.js.juniorasks.models;
 
-import pl.js.juniorasks.usernotifiers.NotifierManager;
+import pl.js.juniorasks.usernotifiers.notifiers.Notifier;
 
 import java.util.HashSet;
 import java.util.Set;
@@ -9,23 +9,23 @@ public final class BlogWall {
 
     private final String mentorNick;
     private final Set<Post> posts = new HashSet<>();
-    private final Set<User> subscribers = new HashSet<>();
+    private final Set<String> subscriberMails = new HashSet<>();
 
     public BlogWall(String mentorNick) {
         this.mentorNick = mentorNick;
     }
 
-    public void addPost(Post post, NotifierManager notifierManager) {
+    public void addPost(Post post, Notifier mailNofitier) {
         this.posts.add(post);
-        notifySubscribers(post, notifierManager);
+        notifySubscribers(post, mailNofitier);
     }
 
-    public Boolean subscribe(User observer) {
-        return this.subscribers.add(observer);
+    public Boolean subscribe(String subscriberMail) {
+        return this.subscriberMails.add(subscriberMail);
     }
 
-    public Boolean unsubscribe(User observer) {
-        return this.subscribers.remove(observer);
+    public Boolean unsubscribe(String subscriberMail) {
+        return this.subscriberMails.remove(subscriberMail);
     }
 
     public int getPostCount() {
@@ -33,10 +33,17 @@ public final class BlogWall {
     }
 
     public int getSubscriberCount() {
-        return this.subscribers.size();
+        return this.subscriberMails.size();
     }
 
-    private void notifySubscribers(Post post, NotifierManager notifierManager) {
-        subscribers.forEach(user -> notifierManager.notifyUser(user, post));
+    public Post getPost(String postId) {
+        return this.posts.stream()
+                .filter(post -> post.getId().equals(postId))
+                .findFirst()
+                .orElseThrow();
+    }
+
+    private void notifySubscribers(Post post, Notifier mailNotifier) {
+        this.subscriberMails.forEach(user -> mailNotifier.notify(user, post));
     }
 }

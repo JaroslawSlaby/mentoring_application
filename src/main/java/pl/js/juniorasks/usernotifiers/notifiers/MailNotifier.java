@@ -24,6 +24,11 @@ public class MailNotifier implements Notifier {
         sendMail(email, notification);
     }
 
+    @Override
+    public void notify(String channelCommunicationId, Notification notification) {
+        sendMail(channelCommunicationId, notification);
+    }
+
     private void sendMail(String email, Notification body) {
         try {
             MimeMessage message = mailSender.createMimeMessage();

@@ -17,10 +17,17 @@ public class BlogService {
         this.blogProcessor = blogProcessor;
     }
 
-    public Post addPost(String mentorId, PostPrototype content) {
-        validateStringValue(mentorId);
+    public Post getPost(String mentorNick, String postId) {
+        validateStringValue(mentorNick);
+        validateStringValue(postId);
+
+        return blogProcessor.getPost(mentorNick, postId);
+    }
+
+    public Post addPost(String mentorNick, PostPrototype content) {
+        validateStringValue(mentorNick);
         validateObjectValue(content);
 
-        return blogProcessor.addPost(mentorId, content);
+        return blogProcessor.addPost(mentorNick, content);
     }
 }

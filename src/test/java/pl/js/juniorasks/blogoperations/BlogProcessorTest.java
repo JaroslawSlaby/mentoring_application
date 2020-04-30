@@ -8,9 +8,15 @@ import pl.js.juniorasks.models.Mentee;
 import pl.js.juniorasks.models.Post;
 import pl.js.juniorasks.models.PostPrototype;
 import pl.js.juniorasks.usernotifiers.NotifierManager;
+import pl.js.juniorasks.usernotifiers.notifiers.Notifier;
+
+import java.time.LocalDateTime;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.ArgumentMatchers.anyString;
+import static org.mockito.Mockito.doNothing;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
@@ -22,6 +28,7 @@ class BlogProcessorTest {
     private static final String MENTEE_NICK = "TestMenteeNick";
     private static final String POST_CONTENT = "TestPostContent";
     private static final String POST_TITLE = "TestPostTitle";
+    private static final String POST_ID = "1";
 
     @Test
     void okAddPostTest() {
@@ -79,5 +86,24 @@ class BlogProcessorTest {
         assertEquals(0, blogWall.getSubscriberCount());
         verify(blogWallProvider, times(2)).getMentorBlogWall(MENTOR_NICK);
         verify(menteeProvider, times(2)).getMentee(MENTEE_NICK);
+    }
+
+    @Test
+    void getPostTest() {
+        Post post = new Post(POST_ID, new PostPrototype(POST_TITLE, POST_CONTENT), LocalDateTime.now());
+        BlogWall blogWall = new BlogWall(MENTOR_NICK);
+        BlogWallProvider blogWallProvider = mock(BlogWallProvider.class);
+        when(blogWallProvider.getMentorBlogWall(MENTOR_NICK)).thenReturn(blogWall);
+        NotifierManager notifierManager = mock(NotifierManager.class);
+        Notifier notifier = mock(Notifier.class);
+        doNothing().when(notifier).notify(anyString(), any());
+        MenteeProvider menteeProvider = mock(MenteeProvider.class);
+        blogWall.addPost(post, notifier);
+
+        BlogProcessor processor = new BlogProcessor(blogWallProvider, menteeProvider, notifierManager);
+        Post returnedPost = processor.getPost(MENTOR_NICK, POST_ID);
+
+        assertEquals(post, returnedPost);
+        verify(blogWallProvider).getMentorBlogWall(MENTOR_NICK);
     }
 }

@@ -3,16 +3,22 @@ package pl.js.juniorasks.models;
 import java.time.LocalDateTime;
 import java.util.Objects;
 
-public final class Post implements Notification {
+public class Post implements Notification {
 
+    private final String id;
     private final String title;
     private final String content;
     private final LocalDateTime timestamp;
 
-    public Post(PostPrototype postPrototype, LocalDateTime timestamp) {
+    public Post(String id, PostPrototype postPrototype, LocalDateTime timestamp) {
+        this.id = id;
         this.title = postPrototype.getTitle();
         this.content = postPrototype.getContent();
         this.timestamp = timestamp;
+    }
+
+    public String getId() {
+        return id;
     }
 
     public String getTitle() {

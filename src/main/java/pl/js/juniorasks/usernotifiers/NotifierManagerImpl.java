@@ -16,6 +16,11 @@ public class NotifierManagerImpl implements NotifierManager {
     }
 
     @Override
+    public Notifier getNotifier(NotifyChannel notifierType) {
+        return this.notifiers.get(notifierType);
+    }
+
+    @Override
     public void notifyUser(User user, Notification notification) {
         user.getNotifyChannels().forEach(notifyChannel ->
                 this.notifiers.get(notifyChannel).notify(user, notification));
