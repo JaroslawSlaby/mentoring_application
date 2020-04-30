@@ -15,8 +15,7 @@ public class MentorProcessor {
         return mentorProvider.getMentor(mentorNick);
     }
 
-    public Mentor addMentor(String mentorNick, String email) {
-        Mentor mentor = new Mentor(mentorNick, email);
+    public Mentor addMentor(Mentor mentor) {
         mentorProvider.saveMentor(mentor);
         return mentor;
     }

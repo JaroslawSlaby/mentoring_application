@@ -24,9 +24,9 @@ public class MenteeController {
         return new ResponseEntity<>(menteeService.getMentee(menteeNick), HttpStatus.OK);
     }
 
-    @PostMapping("/mentees/{menteeNick}")
-    ResponseEntity<Mentee> addMentee(@PathVariable String menteeNick, @RequestBody String email) {
-        return new ResponseEntity<>(menteeService.addMentee(menteeNick, email), HttpStatus.OK);
+    @PostMapping("/mentees")
+    ResponseEntity<Mentee> addMentee(@RequestBody Mentee mentee) {
+        return new ResponseEntity<>(menteeService.addMentee(mentee), HttpStatus.OK);
     }
 
     @DeleteMapping("/mentees/{menteeNick}")

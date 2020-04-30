@@ -15,8 +15,7 @@ public class MenteeProcessor {
         return menteeProvider.getMentee(menteeNick);
     }
 
-    public Mentee addMentee(String menteeNick, String email) {
-        Mentee mentee = new Mentee(menteeNick, email);
+    public Mentee addMentee(Mentee mentee) {
         menteeProvider.saveMentee(mentee);
         return mentee;
     }

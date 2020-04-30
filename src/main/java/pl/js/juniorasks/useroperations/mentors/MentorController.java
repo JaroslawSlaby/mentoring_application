@@ -24,10 +24,9 @@ public class MentorController {
         return new ResponseEntity<>(mentorService.getMentor(mentorNick), HttpStatus.OK);
     }
 
-    @PostMapping("/mentors/{mentorNick}")
-    ResponseEntity<Mentor> addMentor(@PathVariable String mentorNick,
-                                     @RequestBody String mentorEmail) {
-        return new ResponseEntity<>(mentorService.addMentor(mentorNick, mentorEmail), HttpStatus.OK);
+    @PostMapping("/mentors")
+    ResponseEntity<Mentor> addMentor(@RequestBody Mentor mentor) {
+        return new ResponseEntity<>(mentorService.addMentor(mentor), HttpStatus.OK);
     }
 
     @DeleteMapping("/mentors/{mentorNick}")

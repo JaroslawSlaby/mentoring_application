@@ -3,6 +3,7 @@ package pl.js.juniorasks.useroperations.mentees;
 import org.springframework.stereotype.Service;
 import pl.js.juniorasks.models.Mentee;
 
+import static pl.js.juniorasks.tools.InputValidator.validateObjectValue;
 import static pl.js.juniorasks.tools.InputValidator.validateStringValue;
 
 @Service
@@ -19,10 +20,9 @@ public class MenteeService {
         return menteeProcessor.getMentee(menteeNick);
     }
 
-    public Mentee addMentee(String menteeNick, String email) {
-        validateStringValue(menteeNick);
-        validateStringValue(email);
-        return menteeProcessor.addMentee(menteeNick, email);
+    public Mentee addMentee(Mentee mentee) {
+        validateObjectValue(mentee);
+        return menteeProcessor.addMentee(mentee);
     }
 
     public Mentee removeMentee(String menteeNick) {

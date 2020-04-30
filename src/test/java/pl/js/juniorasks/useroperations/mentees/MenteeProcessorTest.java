@@ -20,23 +20,26 @@ class MenteeProcessorTest {
     void getMenteeOkTest() {
         MenteeProvider menteeProvider = mock(MenteeProvider.class);
         MenteeProcessor processor = new MenteeProcessor(menteeProvider);
-        when(menteeProvider.getMentee(MENTEE_NICK)).thenReturn(new Mentee(MENTEE_NICK, MENTEE_MAIL));
+        Mentee mentee = new Mentee(MENTEE_NICK, MENTEE_MAIL);
+        when(menteeProvider.getMentee(MENTEE_NICK)).thenReturn(mentee);
 
-        Mentee mentee = processor.getMentee(MENTEE_NICK);
+        Mentee returnedMentee = processor.getMentee(MENTEE_NICK);
 
-        assertEquals(MENTEE_NICK, mentee.getNick());
+        assertEquals(MENTEE_NICK, returnedMentee.getNick());
+        assertEquals(mentee, returnedMentee);
         verify(menteeProvider).getMentee(MENTEE_NICK);
     }
 
     @Test
     void addMenteeOkTest() {
+        Mentee mentee = new Mentee(MENTEE_NICK, MENTEE_MAIL);
         MenteeProvider menteeProvider = mock(MenteeProvider.class);
         MenteeProcessor processor = new MenteeProcessor(menteeProvider);
         doNothing().when(menteeProvider).saveMentee(any());
 
-        Mentee mentee = processor.addMentee(MENTEE_NICK, MENTEE_MAIL);
+        Mentee returnedMentee = processor.addMentee(mentee);
 
-        assertEquals(MENTEE_NICK, mentee.getNick());
+        assertEquals(mentee, returnedMentee);
         verify(menteeProvider).saveMentee(mentee);
     }
 
@@ -49,12 +52,12 @@ class MenteeProcessorTest {
         doNothing().when(menteeProvider).saveMentee(any());
         when(menteeProvider.removeMentee(MENTEE_NICK)).thenReturn(mentee);
         when(menteeProvider.getMentee(MENTEE_NICK)).thenReturn(new Mentee(MENTEE_NICK, MENTEE_MAIL));
-        processor.addMentee(MENTEE_NICK, MENTEE_MAIL);
+        processor.addMentee(mentee);
 
         Mentee returnedMentee = processor.removeMentee(MENTEE_NICK);
 
         assertEquals(mentee, returnedMentee);
-        verify(menteeProvider).saveMentee(returnedMentee);
+        verify(menteeProvider).saveMentee(mentee);
         verify(menteeProvider).removeMentee(MENTEE_NICK);
     }
 }

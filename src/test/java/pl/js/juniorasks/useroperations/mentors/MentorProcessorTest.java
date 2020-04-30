@@ -1,8 +1,8 @@
 package pl.js.juniorasks.useroperations.mentors;
 
 import org.junit.jupiter.api.Test;
-import pl.js.juniorasks.models.Mentor;
 import pl.js.juniorasks.dataproviders.mentors.MentorProvider;
+import pl.js.juniorasks.models.Mentor;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.ArgumentMatchers.any;
@@ -34,8 +34,9 @@ class MentorProcessorTest {
         MentorProvider mentorProvider = mock(MentorProvider.class);
         MentorProcessor processor = new MentorProcessor(mentorProvider);
         doNothing().when(mentorProvider).saveMentor(any());
+        Mentor mentorPrototype = new Mentor(MENTOR_NICK, MENTOR_MAIL);
 
-        Mentor mentor = processor.addMentor(MENTOR_NICK, MENTOR_MAIL);
+        Mentor mentor = processor.addMentor(mentorPrototype);
 
         assertEquals(MENTOR_NICK, mentor.getNick());
         assertEquals(MENTOR_MAIL, mentor.getEmail());
@@ -51,7 +52,7 @@ class MentorProcessorTest {
         doNothing().when(mentorProvider).saveMentor(any());
         when(mentorProvider.removeMentor(MENTOR_NICK)).thenReturn(mentor);
         when(mentorProvider.getMentor(MENTOR_NICK)).thenReturn(new Mentor(MENTOR_NICK, MENTOR_MAIL));
-        processor.addMentor(MENTOR_NICK, MENTOR_MAIL);
+        processor.addMentor(mentor);
 
         Mentor returnedMentor = processor.removeMentor(MENTOR_NICK);
 
