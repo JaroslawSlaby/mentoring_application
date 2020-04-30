@@ -5,7 +5,7 @@ import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
 
-public final class Mentor implements User {
+public class Mentor implements User {
 
     private String nick;
     private String email;

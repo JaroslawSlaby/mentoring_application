@@ -5,7 +5,6 @@ import org.springframework.mail.javamail.MimeMessageHelper;
 import pl.js.juniorasks.models.Notification;
 import pl.js.juniorasks.models.User;
 
-import javax.mail.MessagingException;
 import javax.mail.internet.MimeMessage;
 
 public class MailNotifier implements Notifier {
@@ -33,7 +32,7 @@ public class MailNotifier implements Notifier {
             helper.setSubject(DEFAULT_SUBJECT);
             helper.setText(body.getHTMLRepresentation(), true);
             mailSender.send(message);
-        } catch (MessagingException e) {
+        } catch (Exception e) {
             throw new RuntimeException(e); //todo: add custom exception
         }
     }
